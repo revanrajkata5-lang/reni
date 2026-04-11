@@ -21,7 +21,7 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
+            background-color: rgb(168, 213, 230);
             color: var(--text-secondary);
             line-height: 1.6;
         }
@@ -29,7 +29,7 @@
         /* Header */
         header {
             display: flex;
-            align-items: center;
+            align-items: right;
             justify-content: space-between;
             padding: clamp(0.5rem, 2vw, 1rem);
             background-color: var(--bg-secondary);
@@ -98,7 +98,9 @@
 
         .right-section {
             display: flex;
-            align-items: center;
+            align-items: right;
+            gap: clamp(0.5rem, 2vw, 1rem);
+
         }
 
         .account-link {
@@ -121,9 +123,55 @@
 
         .account-link:focus {
             outline: 2px solid var(--accent);
-            outline-offset: 2px;
+            outline-offset: 6px;
+        }
+        .message-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(36px, 6vw, 44px);
+            height: clamp(36px, 6vw, 44px);
+            border-radius: 50%;
+            background-color: var(--neutral);
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-left: clamp(0.5rem, 2vw, 1rem);
         }
 
+        .message-link:hover, .message-link:focus {
+            background-color: var(--hover);
+        }
+
+        .message-link:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 6px;
+        }
+        .support-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(36px, 6vw, 44px);
+            height: clamp(36px, 6vw, 44px);
+            border-radius: 50%;
+            background-color: var(--neutral);
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .support-link:hover, .support-link:focus {
+            background-color: var(--hover);
+        }
+
+        .support-link:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 6px;
+        }
+
+        
         /* Main content */
         main {
             padding: clamp(1rem, 5vw, 2rem);
@@ -224,18 +272,22 @@
 <body>
     <header>
         <div class="left-section">
-            <img src="bg main.PNG" alt="Reni Studio's logo">
+            <img src="bg_main.PNG" alt="Reni Studio's logo">
 
             <form class="search-form" role="search">
-                <label for="search-input" class="sr-only">Search</label>
-                <input type="text" id="search-input" name="q" placeholder="Search" maxlength="100">
+                <label for="search-input" class="sr-only"></label>
+                <input type="text" id="search-input" name="q" placeholder="Search" maxlength="200">
                 <button type="submit" aria-label="Search">🔍</button>
             </form>
         </div>
 
         <div class="right-section">
-            <a href="account info.html" class="account-link" aria-label="Account settings">👤</a>
+            
+              <a href="account info.html" class="message-link" aria-label="Messages">💬</a>
+                 <a href="account info.html" class="account-link" aria-label="Account settings">👤</a>
+                  <a href="account info.html" class="support-link" aria-label="Support">❓</a>
         </div>
+      
     </header>
 
     <main>
