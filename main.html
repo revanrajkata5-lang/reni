@@ -267,6 +267,11 @@
             border-right: none;
         }
     </style>
+     <script>
+        if (!localStorage.getItem("username")) {
+            window.location.href = "login.html";
+        }
+    </script>
 </head>
 
 <body>
@@ -283,9 +288,9 @@
 
         <div class="right-section">
             
-              <a href="account info.html" class="message-link" aria-label="Messages">💬</a>
-                 <a href="account info.html" class="account-link" aria-label="Account settings">👤</a>
-                  <a href="account info.html" class="support-link" aria-label="Support">❓</a>
+              <a href="account.html" class="message-link" aria-label="Messages">💬</a>
+                 <a href="account.html" class="account-link" aria-label="Account settings">👤</a>
+                  <a href="account.html" class="support-link" aria-label="Support">❓</a>
         </div>
       
     </header>
