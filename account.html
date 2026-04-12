@@ -28,6 +28,7 @@
             max-width: 400px;
             text-align: center;
             color: white;
+            
         }
 
         .profile-icon {
@@ -92,8 +93,31 @@
         button:hover {
             background: var(--hover);
         }
+        .card {
+    position: relative; /* IMPORTANT for positioning */
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+    background: transparent;
+}
+
+.close-btn:hover {
+    color: var(--accent);
+}
     </style>
 </head>
+<header>
+    <div class="wrong">
+    <div class="close-btn" href="main.html">
+        <div class="close-btn" onclick="goHome()">✖</div>
+    </div>
+</header>
 
 <body>
 
@@ -101,6 +125,7 @@
 
     <div class="profile-icon">
         <div class="avatar">
+            
             <img id="profileImg" src="" alt="Profile">
         </div>
 
@@ -173,6 +198,9 @@
         localStorage.clear();
         window.location.href = "login.html";
     }
+    function goHome() {
+    window.location.href = "main.html"; // change to your main page file
+}
 </script>
 
 </body>
