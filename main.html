@@ -88,12 +88,12 @@
         }
 
         .search-form button:hover, .search-form button:focus {
-            background-color: var(--hover);
+            background-color: whitesmoke;
         }
 
         .search-form button:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: -2px;
+            outline: 2px solid whitesmoke;
+            outline-offset: 2px;
         }
 
         .right-section {
@@ -277,43 +277,77 @@
 <body>
     <header>
         <div class="left-section">
-            <img src="bg_main.png" alt="Reni Studio's logo">
+            <img src="renibg_img.png" alt="Reni Studio's logo">
 
             <form class="search-form" role="search">
                 <label for="search-input" class="sr-only"></label>
-                <input type="text" id="search-input" name="q" placeholder="Search" maxlength="200">
+                <input type="text" id="search-input" name="q" placeholder="Search" maxlength="300">
                 <button type="submit" aria-label="Search">🔍</button>
             </form>
         </div>
 
         <div class="right-section">
             
-              <a href="account.html" class="message-link" aria-label="Messages">💬</a>
-                 <a href="account.html" class="account-link" aria-label="Account settings">👤</a>
-                  <a href="account.html" class="support-link" aria-label="Support">❓</a>
+              <a href="loading2.html" class="message-link" aria-label="Messages">💬</a>
+                 <a href="loading2.html" class="account-link" aria-label="Account settings">👤</a>
+                  <a href="loading2.html" class="support-link" aria-label="Support">❓</a>
         </div>
       
     </header>
 
     <main>
-        <nav class="box-container" aria-label="Content categories">
-            <a href="#" class="box">ACTORS 🎬</a>
-            <a href="#" class="box">TRAVEL VLOGGERS ✈️</a>
-            <a href="#" class="box">FOOD VIDEOS 🍚</a>
-            <a href="#" class="box">ENTERTAINMENT 🤣</a>
-            <a href="#" class="box">MOTIVATION VIDEOS 💪🏻</a>
-            <a href="#" class="box">TECH VIDEOS 🧑🏻‍💻</a>
-            <a href="#" class="box">GAMING 🎮</a>
-            <a href="#" class="box">EDUCATION 📚</a>
-            <a href="#" class="box">AGRICULTURE 👨‍🌾</a>
-            <a href="#" class="box">SPORTS 🚵‍♀️</a>
-            <a href="#" class="box">NEWS 🗞️</a>
-            <a href="#" class="box">ANIMALS 🦁</a>
-            <a href="#" class="box">FASHION 👕</a>
-            <a href="#" class="box">BEAUTY 💄</a>
-            <a href="#" class="box">OTHERS</a>
-        </nav>
+       <nav class="box-container" id="boxContainer">
+    <a href="#" class="box">ACTORS 🎬</a>
+    <a href="#" class="box">TRAVEL VLOGGERS ✈️</a>
+    <a href="#" class="box">FOOD VIDEOS 🍚</a>
+    <a href="#" class="box">ENTERTAINMENT 🤣</a>
+    <a href="#" class="box">MOTIVATION VIDEOS 💪🏻</a>
+    <a href="#" class="box">TECH VIDEOS 🧑🏻‍💻</a>
+    <a href="#" class="box">GAMING 🎮</a>
+    <a href="#" class="box">EDUCATION 📚</a>
+    <a href="#" class="box">AGRICULTURE 👨‍🌾</a>
+    <a href="#" class="box">SPORTS 🚵‍♀️</a>
+    <a href="#" class="box">NEWS 🗞️</a>
+    <a href="#" class="box">ANIMALS 🦁</a>
+    <a href="#" class="box">FASHION 👕</a>
+    <a href="#" class="box">BEAUTY 💄</a>
+    <a href="#" class="box">OTHERS</a>
+</nav>
     </main>
+    <script>
+const searchForm = document.querySelector(".search-form");
+const searchInput = document.getElementById("search-input");
+const boxes = document.querySelectorAll(".box");
+
+searchForm.addEventListener("submit", function(e) {
+    e.preventDefault(); // stop page reload
+
+    const value = searchInput.value.toLowerCase();
+
+    boxes.forEach(box => {
+        const text = box.textContent.toLowerCase();
+
+        if (text.includes(value)) {
+            box.style.display = "flex";
+        } else {
+            box.style.display = "none";
+        }
+    });
+});
+</script>
+<script>
+    const searchInput = document.getElementById("search-input");
+    const boxes = document.querySelectorAll(".box");
+
+    searchInput.addEventListener("keyup", function() {
+        const value = searchInput.value.toLowerCase();
+
+        boxes.forEach(box => {
+            const text = box.textContent.toLowerCase();
+            box.style.display = text.includes(value) ? "flex" : "none";
+        });
+    });
+    </script>
 </body>
 
 </html>

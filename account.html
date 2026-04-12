@@ -122,27 +122,47 @@
 
 <script>
     // Load user data
-    document.getElementById("username").innerText = localStorage.getItem("username");
-    document.getElementById("email").innerText = localStorage.getItem("email");
-    document.getElementById("phone").innerText = localStorage.getItem("phone");
+    document.getElementById("username").innerText = localStorage.getItem("username") || "Not set";
+    document.getElementById("email").innerText = localStorage.getItem("email") || "Not set";
+    document.getElementById("phone").innerText = localStorage.getItem("phone") || "Not set";
 
-    // Load saved image
+    const profileImg = document.getElementById("profileImg");
+
+    // ✅ Default image if none saved
     let savedImage = localStorage.getItem("profileImage");
     if (savedImage) {
-        document.getElementById("profileImg").src = savedImage;
+        profileImg.src = savedImage;
+    } else {
+        profileImg.src = "https://via.placeholder.com/90"; // default avatar
     }
 
-    // Upload image
+    // ✅ Upload image + resize (important fix)
     document.getElementById("upload").addEventListener("change", function () {
-        let file = this.files[0];
+        const file = this.files[0];
 
         if (file) {
-            let reader = new FileReader();
+            const reader = new FileReader();
 
-            reader.onload = function () {
-                let imageData = reader.result;
-                document.getElementById("profileImg").src = imageData;
-                localStorage.setItem("profileImage", imageData);
+            reader.onload = function (e) {
+                const img = new Image();
+                img.src = e.target.result;
+
+                img.onload = function () {
+                    // Resize image (prevents storage issues)
+                    const canvas = document.createElement("canvas");
+                    const ctx = canvas.getContext("2d");
+
+                    const size = 150; // max size
+                    canvas.width = size;
+                    canvas.height = size;
+
+                    ctx.drawImage(img, 0, 0, size, size);
+
+                    const compressed = canvas.toDataURL("image/jpeg", 0.7);
+
+                    profileImg.src = compressed;
+                    localStorage.setItem("profileImage", compressed);
+                };
             };
 
             reader.readAsDataURL(file);
