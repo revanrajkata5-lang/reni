@@ -266,6 +266,326 @@
             border-left: 1px solid var(--neutral);
             border-right: none;
         }
+
+        /* Onboarding Styles */
+        .onboarding-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: oklch(0% 0 0 / 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .onboarding-modal {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: clamp(2rem, 5vw, 3rem);
+            max-width: min(90vw, 500px);
+            box-shadow: 0 20px 40px oklch(0% 0 0 / 0.3);
+            text-align: center;
+            position: relative;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .onboarding-modal h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .onboarding-modal p {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .onboarding-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .feature-item {
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            border: 1px solid var(--neutral);
+        }
+
+        .feature-item .emoji {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item .title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-item .desc {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .onboarding-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--neutral);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: oklch(70% 0.05 0);
+        }
+
+        .skip-onboarding {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            opacity: 0.6;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .skip-onboarding:hover {
+            opacity: 1;
+            background: var(--neutral);
+        }
+
+        /* Tour Styles */
+        .tour-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        .tour-spotlight {
+            position: absolute;
+            border-radius: 8px;
+            box-shadow: 0 0 0 9999px oklch(0% 0 0 / 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        .tour-tooltip {
+            position: absolute;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px oklch(0% 0 0 / 0.2);
+            max-width: 300px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            pointer-events: all;
+            z-index: 1000;
+        }
+
+        .tour-tooltip .title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tour-tooltip .actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .tour-next, .tour-prev, .tour-done {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tour-next {
+            background: var(--accent);
+            color: white;
+        }
+
+        .tour-prev {
+            background: var(--neutral);
+            color: var(--text-secondary);
+        }
+
+        .tour-done {
+            background: oklch(50% 0.2 120);
+            color: white;
+        }
+
+        /* Contextual Tooltips */
+        .tooltip {
+            position: absolute;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px oklch(0% 0 0 / 0.15);
+            font-size: 0.85rem;
+            line-height: 1.4;
+            max-width: 250px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            border: 1px solid var(--neutral);
+        }
+
+        .tooltip.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: 5px solid transparent;
+        }
+
+        .tooltip.top::before {
+            border-bottom-color: var(--bg-secondary);
+            border-top: none;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .tooltip.bottom::before {
+            border-top-color: var(--bg-secondary);
+            border-bottom: none;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Pulse animation for new features */
+        .new-feature {
+            position: relative;
+        }
+
+        .new-feature::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 8px;
+            height: 8px;
+            background: oklch(50% 0.8 120);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        /* Welcome message for first-time users */
+        .welcome-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px oklch(0% 0 0 / 0.2);
+            z-index: 1001;
+            animation: slideDown 0.5s ease-out;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .welcome-message:hover {
+            background: var(--hover);
+        }
+
+        @keyframes slideDown {
+            from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+            to { transform: translateX(-50%) translateY(0); opacity: 1; }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 9999px oklch(0% 0 0 / 0.7); }
+            50% { box-shadow: 0 0 0 9999px oklch(0% 0 0 / 0.75); }
+        }
+
+        /* Hide onboarding on small screens if needed */
+        @media (max-width: 480px) {
+            .onboarding-features {
+                grid-template-columns: 1fr;
+            }
+
+            .onboarding-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
      <script>
         if (!localStorage.getItem("username")) {
@@ -275,6 +595,64 @@
 </head>
 
 <body>
+    <!-- Onboarding Welcome Modal -->
+    <div id="onboardingOverlay" class="onboarding-overlay" style="display: none;">
+        <div class="onboarding-modal">
+            <button class="skip-onboarding" onclick="skipOnboarding()" aria-label="Skip onboarding">✕</button>
+            <h2>Welcome to RENI STUDIO'S! 🎬</h2>
+            <p>Your premier destination for discovering amazing video content across entertainment, education, and lifestyle categories.</p>
+
+            <div class="onboarding-features">
+                <div class="feature-item">
+                    <div class="emoji">🎭</div>
+                    <div class="title">Actors & Entertainment</div>
+                    <div class="desc">Watch captivating performances</div>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">🍳</div>
+                    <div class="title">Food & Cooking</div>
+                    <div class="desc">Culinary adventures await</div>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">🎓</div>
+                    <div class="title">Education</div>
+                    <div class="desc">Learn something new daily</div>
+                </div>
+                <div class="feature-item">
+                    <div class="emoji">⚽</div>
+                    <div class="title">Sports & Gaming</div>
+                    <div class="desc">Stay entertained</div>
+                </div>
+            </div>
+
+            <div class="onboarding-actions">
+                <button class="btn-secondary" onclick="skipOnboarding()">Explore on My Own</button>
+                <button class="btn-primary" onclick="startGuidedTour()">Take a Quick Tour</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tour Elements -->
+    <div id="tourOverlay" class="tour-overlay" style="display: none;">
+        <div id="tourSpotlight" class="tour-spotlight"></div>
+        <div id="tourTooltip" class="tour-tooltip">
+            <div class="title">Tour Step</div>
+            <div class="content">Tour content here</div>
+            <div class="actions">
+                <button class="tour-prev" onclick="prevTourStep()" style="display: none;">Previous</button>
+                <button class="tour-next" onclick="nextTourStep()">Next</button>
+                <button class="tour-done" onclick="endTour()" style="display: none;">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contextual Tooltip -->
+    <div id="contextualTooltip" class="tooltip"></div>
+
+    <!-- Welcome Message -->
+    <div id="welcomeMessage" class="welcome-message" style="display: none;" onclick="this.style.display='none'">
+        🎉 Welcome back! Explore our latest actor videos →
+    </div>
     <header>
         <div class="left-section">
             <img src="renibg_img.png" alt="Reni Studio's logo">
@@ -297,7 +675,7 @@
 
     <main>
        <nav class="box-container" id="boxContainer">
-    <a href="#" class="box">ACTORS 🎬</a>
+    <a href="actorspage1.html" class="box new-feature">ACTORS 🎬</a>
     <a href="#" class="box">TRAVEL VLOGGERS ✈️</a>
     <a href="#" class="box">FOOD VIDEOS 🍚</a>
     <a href="#" class="box">ENTERTAINMENT 🤣</a>
@@ -377,6 +755,250 @@ document.addEventListener("keydown", function(e) {
         e.preventDefault();
     }
 });
+</script>
+
+<!-- Onboarding JavaScript -->
+<script>
+let currentTourStep = 0;
+const tourSteps = [
+    {
+        element: '.search-form',
+        title: '🔍 Search & Discover',
+        content: 'Use the search bar to find videos by category, actor, or topic. Try searching for "cooking" or "sports"!',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:first-child',
+        title: '🎬 Browse Categories',
+        content: 'Explore our 15+ video categories. Click on any category to see featured videos in that topic.',
+        position: 'top'
+    },
+    {
+        element: '.right-section .account-link',
+        title: '👤 Your Account',
+        content: 'Manage your profile, view your favorites, and update your preferences here.',
+        position: 'bottom'
+    },
+    {
+        element: '.right-section .message-link',
+        title: '💬 Messages & Support',
+        content: 'Get help, contact creators, or reach out to our support team.',
+        position: 'bottom'
+    }
+];
+
+// Initialize onboarding
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if user has seen onboarding
+    if (!localStorage.getItem('onboarding-completed')) {
+        showOnboarding();
+    } else {
+        // Show welcome back message for returning users
+        showWelcomeBack();
+    }
+
+    // Initialize tooltips
+    initializeTooltips();
+});
+
+function showWelcomeBack() {
+    // Show welcome message for returning users (not first-time)
+    if (localStorage.getItem('onboarding-completed') && !localStorage.getItem('welcome-shown')) {
+        const welcomeMsg = document.getElementById('welcomeMessage');
+        welcomeMsg.style.display = 'block';
+
+        setTimeout(() => {
+            welcomeMsg.style.display = 'none';
+            localStorage.setItem('welcome-shown', 'true');
+        }, 5000);
+    }
+}
+
+function initializeTooltips() {
+    // Add tooltips to key elements
+    const tooltipElements = [
+        {
+            selector: '.box-container .box:first-child',
+            content: '🎭 Click here to explore actor videos, interviews, and behind-the-scenes content!',
+            position: 'top'
+        },
+        {
+            selector: '.search-form input',
+            content: '🔍 Search for specific videos, actors, or categories across our entire library.',
+            position: 'bottom'
+        },
+        {
+            selector: '.right-section .account-link',
+            content: '👤 Manage your profile, view favorites, and update your preferences.',
+            position: 'bottom'
+        }
+    ];
+
+    tooltipElements.forEach(item => {
+        const element = document.querySelector(item.selector);
+        if (element) {
+            element.addEventListener('mouseenter', (e) => showTooltip(e.target, item.content, item.position));
+            element.addEventListener('mouseleave', hideTooltip);
+        }
+    });
+}
+
+function showTooltip(element, content, position) {
+    const tooltip = document.getElementById('contextualTooltip');
+    const rect = element.getBoundingClientRect();
+
+    tooltip.textContent = content;
+    tooltip.className = `tooltip ${position} show`;
+
+    // Position tooltip
+    if (position === 'top') {
+        tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+        tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + 'px';
+    } else {
+        tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+        tooltip.style.top = rect.bottom + 8 + 'px';
+    }
+
+    // Keep in viewport
+    const tooltipRect = tooltip.getBoundingClientRect();
+    if (tooltipRect.left < 10) {
+        tooltip.style.left = '10px';
+    }
+    if (tooltipRect.right > window.innerWidth - 10) {
+        tooltip.style.left = window.innerWidth - tooltipRect.width - 10 + 'px';
+    }
+}
+
+function hideTooltip() {
+    const tooltip = document.getElementById('contextualTooltip');
+    tooltip.classList.remove('show');
+}
+
+function showOnboarding() {
+    document.getElementById('onboardingOverlay').style.display = 'flex';
+}
+
+function skipOnboarding() {
+    document.getElementById('onboardingOverlay').style.display = 'none';
+    localStorage.setItem('onboarding-completed', 'true');
+}
+
+function startGuidedTour() {
+    document.getElementById('onboardingOverlay').style.display = 'none';
+    document.getElementById('tourOverlay').style.display = 'block';
+    currentTourStep = 0;
+    showTourStep();
+}
+
+function showTourStep() {
+    const step = tourSteps[currentTourStep];
+    const element = document.querySelector(step.element);
+
+    if (!element) return;
+
+    const rect = element.getBoundingClientRect();
+    const spotlight = document.getElementById('tourSpotlight');
+    const tooltip = document.getElementById('tourTooltip');
+
+    // Position spotlight
+    spotlight.style.left = rect.left - 8 + 'px';
+    spotlight.style.top = rect.top - 8 + 'px';
+    spotlight.style.width = rect.width + 16 + 'px';
+    spotlight.style.height = rect.height + 16 + 'px';
+
+    // Position tooltip
+    tooltip.querySelector('.title').textContent = step.title;
+    tooltip.querySelector('.content').textContent = step.content;
+
+    // Position tooltip based on step.position
+    const tooltipRect = tooltip.getBoundingClientRect();
+    let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+    let top;
+
+    if (step.position === 'top') {
+        top = rect.top - tooltipRect.height - 10;
+    } else {
+        top = rect.bottom + 10;
+    }
+
+    // Keep tooltip in viewport
+    left = Math.max(10, Math.min(left, window.innerWidth - tooltipRect.width - 10));
+    top = Math.max(10, Math.min(top, window.innerHeight - tooltipRect.height - 10));
+
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = top + 'px';
+
+    // Update buttons
+    const prevBtn = document.querySelector('.tour-prev');
+    const nextBtn = document.querySelector('.tour-next');
+    const doneBtn = document.querySelector('.tour-done');
+
+    prevBtn.style.display = currentTourStep > 0 ? 'inline-block' : 'none';
+    nextBtn.style.display = currentTourStep < tourSteps.length - 1 ? 'inline-block' : 'none';
+    doneBtn.style.display = currentTourStep === tourSteps.length - 1 ? 'inline-block' : 'none';
+}
+
+function nextTourStep() {
+    if (currentTourStep < tourSteps.length - 1) {
+        currentTourStep++;
+        showTourStep();
+    }
+}
+
+function prevTourStep() {
+    if (currentTourStep > 0) {
+        currentTourStep--;
+        showTourStep();
+    }
+}
+
+function endTour() {
+    document.getElementById('tourOverlay').style.display = 'none';
+    localStorage.setItem('onboarding-completed', 'true');
+
+    // Show success message
+    showToast('🎉 Welcome to RENI STUDIO\'S! Start exploring your favorite categories.', 'success');
+}
+
+// Toast notification function
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? 'oklch(60% 0.2 120)' : 'var(--accent)'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px oklch(0% 0 0 / 0.2);
+        z-index: 1001;
+        animation: slideInRight 0.3s ease-out;
+        max-width: 300px;
+    `;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.animation = 'slideOutRight 0.3s ease-in';
+        setTimeout(() => toast.remove(), 300);
+    }, 4000);
+}
+
+// Add toast animations to CSS
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
 </script>
 </body>
 
