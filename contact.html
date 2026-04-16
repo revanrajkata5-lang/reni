@@ -6,33 +6,37 @@
     <title>Contact Us</title>
 
     <style>
-        .close-btn {
+       .close-btn {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
+    top: 20px;
+    right: 25px;
+    font-size: 22px;
     cursor: pointer;
-    color: black;
-    background: transparent;
+    color: white;
+    transition: 0.3s;
 }
 
 .close-btn:hover {
-    color: var(--accent);
+    color: #00c6ff;
+    transform: scale(1.2);
 }
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
 
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background-color:  #0ed8f3;
-            color: var(--text-primary);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: clamp(1rem, 5vw, 2rem);
-        }
+    background: radial-gradient(circle at top, #141414, #0b0b0f, #000);
+    color: white;
 
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(1rem, 5vw, 2rem);
+}
+* {
+    transition: all 0.25s ease;
+}
         main {
             display: flex;
             flex-direction: column;
@@ -61,32 +65,134 @@
             border: 2px solid var(--neutral);
         }
         .card {
-            background: rgba(0,0,0,0.7);
-            padding: 2rem;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            color: white;
-            cursor: pointer;
-        }
-    button {
-    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 420px;
+    color: white;
+
+    box-shadow: 0 0 40px rgba(0,198,255,0.2);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 60px rgba(0,198,255,0.4);
+}
+   button {
+    padding: 12px;
+    border-radius: 10px;
     border: none;
-    border-radius: 8px;
-    background-color: #00c6ff;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
     color: white;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-    background-color: #00a6d6;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(0,198,255,0.5);
 }
 
+.bg-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0,198,255,0.25), transparent);
+    top: -100px;
+    left: -100px;
+    filter: blur(120px);
+    animation: moveGlow 12s infinite alternate;
+}
+
+@keyframes moveGlow {
+    0% { top: -100px; left: -100px; }
+    100% { top: 150px; left: 250px; }
+}
+input, textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: rgba(0,0,0,0.6);
+    color: white;
+}
+
+input:focus, textarea:focus {
+    box-shadow: 0 0 10px #00c6ff;
+}
+.success-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s ease;
+    z-index: 999;
+}
+
+.success-box.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.success-content {
+    background: rgba(255,255,255,0.05);
+    padding: 2rem 3rem;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+
+    box-shadow: 0 0 40px rgba(0,198,255,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+
+    transform: scale(0.8);
+    animation: popIn 0.4s forwards;
+}
+
+@keyframes popIn {
+    to {
+        transform: scale(1);
+    }
+}
+
+/* ✔ check animation */
+.checkmark {
+    font-size: 40px;
+    color: #00c6ff;
+    margin-bottom: 10px;
+    animation: glowCheck 1s infinite alternate;
+}
+
+@keyframes glowCheck {
+    from { text-shadow: 0 0 5px #00c6ff; }
+    to { text-shadow: 0 0 20px #00c6ff; }
+}
     </style>
 </head>
 <body>
+    <div id="successBox" class="success-box">
+    <div class="success-content">
+        <div class="checkmark">✔</div>
+        <h2>Message Sent</h2>
+        <p>We’ll get back to you soon.</p>
+    </div>
+</div>
+    <div class="bg-glow"></div>
     <header>
         <div class="close-btn" onclick="goHome()">✖</div>
     </header>
@@ -118,23 +224,26 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
 
     const form = this;
 
-    // Send to YOU
+    // ⚡ SHOW SUCCESS IMMEDIATELY
+    document.getElementById("successBox").classList.add("active");
+
+    setTimeout(() => {
+        document.getElementById("successBox").classList.remove("active");
+    }, 2500);
+
+    form.reset();
+
+    // 🚀 Send emails in background (no waiting)
     emailjs.sendForm("service_lu57i9l", "template_gup6jd9", form)
     .then(() => {
-        // Send AUTO REPLY
         return emailjs.send("service_lu57i9l", "template_w0bri0j", {
             user_name: form.user_name.value,
             user_email: form.user_email.value,
             message: form.message.value
         });
     })
-    .then(() => {
-        alert("REQUEST SENT! We will get back to you as soon as possible.");
-        form.reset();
-    })
     .catch((error) => {
-        console.log(error); // 🔥 check this
-        alert("Error sending message");
+        console.log("Email error:", error);
     });
 });
 </script>
@@ -147,12 +256,12 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
         }
     </script>
     <script>
-// 🚫 Disable Right Click
+// Disable Right Click
 document.addEventListener("contextmenu", function(e) {
     e.preventDefault();
 });
 
-// 🚫 Disable F12, Ctrl+Shift+I, Ctrl+U
+// Disable F12, Ctrl+Shift+I, Ctrl+U
 document.addEventListener("keydown", function(e) {
 
     // F12

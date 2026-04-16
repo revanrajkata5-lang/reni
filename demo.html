@@ -1,1325 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en">    
 <head>
-    <title>Main Interface - RENI STUDIO'S</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Actors - RENI STUDIO'S</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
-        :root {
-            --bg-primary: oklch(5% 0 0);
-            --bg-secondary: oklch(95% 0 0);
-            --text-primary: oklch(10% 0 0);
-            --text-secondary: oklch(90% 0 0);
-            --accent: oklch(60% 0.2 240);
-            --neutral: oklch(80% 0.05 0);
-            --hover: oklch(70% 0.1 240);
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+
+            /* 🎬 Cinematic background */
+            background: radial-gradient(circle at top, #141414, #0b0b0f, #000);
+            color: whitesmoke;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
         }
 
-   body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
+        /* ✨ Moving glow */
+        .bg-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,198,255,0.25), transparent);
+            top: -100px;
+            left: -100px;
+            filter: blur(120px);
+            animation: moveGlow 12s infinite alternate;
+        }
 
-    /* Netflix-style cinematic background */
-    background:
-        radial-gradient(circle at 20% 30%, rgba(255, 0, 60, 0.15), transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(0, 150, 255, 0.12), transparent 40%),
-        linear-gradient(135deg, #000000, #0a0a0a, #141414, #000000);
+        @keyframes moveGlow {
+            0% { top: -100px; left: -100px; }
+            100% { top: 150px; left: 250px; }
+        }
 
-    background-size: cover;
-    background-attachment: fixed;
-    color: white;
-}
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
+        main {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            z-index: 2;
+        }
 
-    background:
-        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 60%);
+        header img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 420px;
+            height: 170px;
 
-    z-index: -1;
-    animation: cinematicMove 12s ease-in-out infinite alternate;
-}
+            /* subtle hover zoom */
+            transition: 0.4s;
+        }
 
-@keyframes cinematicMove {
-    from { transform: scale(1); opacity: 0.6; }
-    to { transform: scale(1.1); opacity: 1; }
-}
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
+        header img:hover {
+            transform: scale(1.05);
+        }
 
-    background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
-    opacity: 0.15;
-    pointer-events: none;
-    z-index: -1;
-}
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 50px;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
 
+            /* gradient text */
+            background: linear-gradient(90deg, #00c6ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-        /* Header */
-        header {
+        /* Button Container */
+        .options {
             display: flex;
-           align-items: center;
-            justify-content: space-between;
-            padding: clamp(0.5rem, 2vw, 1rem);
-            background-color: var(--bg-secondary);
-            box-shadow: 0 2px 8px oklch(0% 0 0 / 0.1);
-            
-    backdrop-filter: blur(12px);
-    background: rgba(255,255,255,0.08);
+            flex-direction: column;
+            gap: 20px;
+        }
 
+        /* Buttons */
+        .option-btn {
+            padding: 20px;
+            font-size: 18px;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 🔥 Hover Glow Effect */
+        .option-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0,198,255,0.5);
+        }
+
+        /* ✨ Shine animation */
+        .option-btn::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255,255,255,0.2),
+                transparent
+            );
+            transform: rotate(25deg);
+            opacity: 0;
+        }
+
+        .option-btn:hover::before {
+            opacity: 1;
+            animation: shine 0.6s forwards;
+        }
+
+        @keyframes shine {
+            from { transform: translateX(-100%) rotate(25deg); }
+            to { transform: translateX(100%) rotate(25deg); }
+        }
+
+        /* Active / Selected */
+        .option-btn.active {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: black;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0,198,255,0.8);
         }
 
         .left-section {
             display: flex;
             align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 22px;
             gap: clamp(0.5rem, 2vw, 1rem);
         }
 
-        header img {
-            height: clamp(40px, 8vw, 50px);
-            width: auto;
-            max-width: 120px;
-            border-radius: 12px;
-        }
-
-        .search-form {
-            display: flex;
-            align-items: center;
-            flex: 1;
-            max-width: 400px;
-        }
-
-        .search-form input {
-            flex: 1;
-            height: clamp(32px, 5vw, 40px);
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--neutral);
-            border-radius: 20px 0 0 20px;
-            outline: none;
-            font-size: 1rem;
-            background-color: var(--bg-secondary);
-            color: var(--text-primary);
-        }
-
-        .search-form input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 2px oklch(60% 0.2 240 / 0.2);
-        }
-       
-
-        .search-form button {
-            height: clamp(32px, 5vw, 40px);
-            width: clamp(48px, 8vw, 60px);
-            border: 1px solid var(--neutral);
-            border-left: none;
-            background-color: var(--bg-secondary);
-            cursor: pointer;
-            border-radius: 0 20px 20px 0;
+        .back-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
-        }
+            margin-bottom: 20px;
 
-        .search-form button:hover, .search-form button:focus {
-            background-color: whitesmoke;
-        }
-
-        .search-form button:focus {
-            outline: 2px solid whitesmoke;
-            outline-offset: 2px;
-        }
-
-        .right-section {
-            display: flex;
-            align-items: right;
-            gap: clamp(0.5rem, 2vw, 1rem);
-
-        }
-
-        .account-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: clamp(36px, 6vw, 44px);
-            height: clamp(36px, 6vw, 44px);
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background-color: var(--neutral);
-            color: var(--text-secondary);
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
 
-        .account-link:hover, .account-link:focus {
-            background-color: var(--hover);
-        }
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
 
-        .account-link:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 6px;
-        }
-        .message-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: clamp(36px, 6vw, 44px);
-            height: clamp(36px, 6vw, 44px);
-            border-radius: 50%;
-            background-color: var(--neutral);
-            color: var(--text-secondary);
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            margin-left: clamp(0.5rem, 2vw, 1rem);
-        }
-
-        .message-link:hover, .message-link:focus {
-            background-color: var(--hover);
-        }
-
-        .message-link:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 6px;
-        }
-        .support-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: clamp(36px, 6vw, 44px);
-            height: clamp(36px, 6vw, 44px);
-            border-radius: 50%;
-            background-color: var(--neutral);
-            color: var(--text-secondary);
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .support-link:hover, .support-link:focus {
-            background-color: var(--hover);
-        }
-
-        .support-link:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 6px;
-        }
-
-        
-        /* Main content */
-        main {
-            padding: clamp(1rem, 5vw, 2rem);
-        }
-
-        .box-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 20vw, 250px), 1fr));
-            gap: clamp(1rem, 3vw, 1.5rem);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .box {
-            background-color: var(--bg-secondary);
-            min-height: clamp(100px, 15vh, 120px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(0.9rem, 3vw, 1.1rem);
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: all 0.3s ease-out-quart;
-            box-shadow: 0 4px 12px oklch(0% 0 0 / 0.1);
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
-        }
-
-      .box:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 25px oklch(60% 0.2 240 / 0.4);
-}
-button, a {
-    transition: all 0.25s ease;
-}
-        .box:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .left-section {
-                width: 100%;
-            }
-
-            .search-form {
-                max-width: none;
-            }
-
-            .box-container {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .box, .account-link, .search-form button {
-                transition: none;
-            }
-            .box:hover, .account-link:hover {
-                transform: none;
-            }
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-primary: oklch(10% 0 0);
-                --bg-secondary: oklch(20% 0 0);
-                --text-primary: oklch(90% 0 0);
-                --text-secondary: oklch(95% 0 0);
-            }
-        }
-
-        /* RTL support */
-        [dir="rtl"] .left-section {
-            flex-direction: row-reverse;
-        }
-
-        [dir="rtl"] .search-form input {
-            border-radius: 0 20px 20px 0;
-        }
-
-        [dir="rtl"] .search-form button {
-            border-radius: 20px 0 0 20px;
-            border-left: 1px solid var(--neutral);
-            border-right: none;
-        }
-
-        /* Onboarding Styles */
-        .onboarding-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: oklch(0% 0 0 / 0.8);
-            backdrop-filter: blur(8px);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        .onboarding-modal {
-            background: var(--bg-secondary);
-            border-radius: 16px;
-            padding: clamp(2rem, 5vw, 3rem);
-            max-width: min(90vw, 500px);
-            box-shadow: 0 20px 40px oklch(0% 0 0 / 0.3);
-            text-align: center;
-            position: relative;
-            animation: slideUp 0.6s ease-out;
-        }
-
-        .onboarding-modal h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .onboarding-modal p {
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            color: var(--text-secondary);
-        }
-
-        .onboarding-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .feature-item {
-            padding: 1rem;
-            background: var(--bg-primary);
-            border-radius: 8px;
-            border: 1px solid var(--neutral);
-        }
-
-        .feature-item .emoji {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-item .title {
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .feature-item .desc {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        .onboarding-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary, .btn-secondary {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .btn-primary {
-            background: var(--accent);
             color: white;
+            text-decoration: none;
+            font-size: 18px;
+
+            transition: 0.3s;
         }
 
-        .btn-primary:hover {
-            background: var(--hover);
-            transform: translateY(-2px);
+        .back-btn:hover {
+            background: #00c6ff;
+            color: black;
+            transform: translateX(-3px) scale(1.1);
+            box-shadow: 0 0 20px #00c6ff;
         }
 
-        .btn-secondary {
-            background: var(--neutral);
-            color: var(--text-secondary);
+        /* smooth transitions globally */
+        * {
+            transition: all 0.25s ease;
         }
-
-        .btn-secondary:hover {
-            background: oklch(70% 0.05 0);
-        }
-
-        .skip-onboarding {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            opacity: 0.6;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 0.5rem;
-            border-radius: 4px;
-        }
-
-        .skip-onboarding:hover {
-            opacity: 1;
-            background: var(--neutral);
-        }
-
-        /* Tour Styles */
-        .tour-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 999;
-            pointer-events: none;
-        }
-
-        .tour-spotlight {
-            position: absolute;
-            border-radius: 8px;
-            box-shadow: 0 0 0 9999px oklch(0% 0 0 / 0.7);
-            animation: pulse 2s infinite;
-        }
-
-        .tour-tooltip {
-            position: absolute;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 16px oklch(0% 0 0 / 0.2);
-            max-width: 300px;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            pointer-events: all;
-            z-index: 1000;
-        }
-
-        .tour-tooltip .title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .tour-tooltip .actions {
-            margin-top: 1rem;
-            display: flex;
-            gap: 0.5rem;
-            justify-content: flex-end;
-        }
-
-        .tour-next, .tour-prev, .tour-done {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .tour-next {
-            background: var(--accent);
-            color: white;
-        }
-
-        .tour-prev {
-            background: var(--neutral);
-            color: var(--text-secondary);
-        }
-
-        .tour-done {
-            background: oklch(50% 0.2 120);
-            color: white;
-        }
-
-        /* Contextual Tooltips */
-        .tooltip {
-            position: absolute;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            padding: 0.75rem 1rem;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px oklch(0% 0 0 / 0.15);
-            font-size: 0.85rem;
-            line-height: 1.4;
-            max-width: 250px;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            pointer-events: none;
-            border: 1px solid var(--neutral);
-        }
-
-        .tooltip.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .tooltip::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border: 5px solid transparent;
-        }
-
-        .tooltip.top::before {
-            border-bottom-color: var(--bg-secondary);
-            border-top: none;
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .tooltip.bottom::before {
-            border-top-color: var(--bg-secondary);
-            border-bottom: none;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Pulse animation for new features */
-        .new-feature {
-            position: relative;
-        }
-
-        .new-feature::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            width: 8px;
-            height: 8px;
-            background: oklch(50% 0.8 120);
-            border-radius: 50%;
-            animation: pulse-dot 2s infinite;
-        }
-
-        @keyframes pulse-dot {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.2); opacity: 0.7; }
-        }
-
-        /* Welcome message for first-time users */
-        .welcome-message {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px oklch(0% 0 0 / 0.2);
-            z-index: 1001;
-            animation: slideDown 0.5s ease-out;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        .welcome-message:hover {
-            background: var(--hover);
-        }
-
-        @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 0 9999px oklch(0% 0 0 / 0.7); }
-            50% { box-shadow: 0 0 0 9999px oklch(0% 0 0 / 0.75); }
-        }
-
-        /* Hide onboarding on small screens if needed */
-        @media (max-width: 480px) {
-            .onboarding-features {
-                grid-template-columns: 1fr;
-            }
-
-            .onboarding-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-        html {
-    scroll-behavior: smooth;
-}
-
-body {
-    transition: background 0.5s ease;
-}
-.box:active {
-    transform: scale(0.96);
-}
-
-.account-link:active,
-.message-link:active,
-.support-link:active {
-    transform: scale(0.9);
-}
-body.dark-mode {
-    --bg-primary: oklch(10% 0 0);
-    --bg-secondary: oklch(20% 0 0);
-    --text-primary: oklch(90% 0 0);
-    --text-secondary: oklch(95% 0 0);
-    background-color: var(--bg-primary);
-}
-
-/* Smooth transition */
-body, header, .box {
-    transition: background 0.3s, color 0.3s;
-}
-#themeToggle:hover {
-    background: var(--hover);
-    transform: scale(1.1);
-}
     </style>
-     <script>
-        if (!localStorage.getItem("username")) {
-            window.location.href = "login.html";
-        }
-    </script>
 </head>
 
 <body>
-   <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const toggleBtn = document.getElementById("themeToggle");
 
-    // Load saved theme
-    if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark-mode");
-        toggleBtn.textContent = "☀️";
-    }
+<div class="bg-glow"></div>
 
-    // Toggle theme
-    toggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-
-        if (document.body.classList.contains("dark-mode")) {
-            localStorage.setItem("theme", "dark");
-            toggleBtn.textContent = "☀️";
-        } else {
-            localStorage.setItem("theme", "light");
-            toggleBtn.textContent = "🌙";
-        }
-    });
-});
-</script>
-    <!-- Onboarding Welcome Modal -->
-    <div id="onboardingOverlay" class="onboarding-overlay" style="display: none;">
-        <div class="onboarding-modal">
-            <button class="skip-onboarding" onclick="skipOnboarding()" aria-label="Skip onboarding">✕</button>
-            <h2>Welcome to RENI STUDIO'S! 🎬</h2>
-            <p>Your premier destination for discovering amazing video content across entertainment, education, and lifestyle categories.</p>
-
-            <div class="onboarding-features">
-                <div class="feature-item">
-                    <div class="emoji">🎭</div>
-                    <div class="title">Actors & Entertainment</div>
-                    <div class="desc">Watch captivating performances</div>
-                </div>
-                <div class="feature-item">
-                    <div class="emoji">🍳</div>
-                    <div class="title">Food & Cooking</div>
-                    <div class="desc">Culinary adventures await</div>
-                </div>
-                <div class="feature-item">
-                    <div class="emoji">🎓</div>
-                    <div class="title">Education</div>
-                    <div class="desc">Learn something new daily</div>
-                </div>
-                <div class="feature-item">
-                    <div class="emoji">⚽</div>
-                    <div class="title">Sports & Gaming</div>
-                    <div class="desc">Stay entertained</div>
-                </div>
-            </div>
-
-            <div class="onboarding-actions">
-                <button class="btn-secondary" onclick="skipOnboarding()">Explore on My Own</button>
-                <button class="btn-primary" onclick="startGuidedTour()">Take a Quick Tour</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tour Elements -->
-    <div id="tourOverlay" class="tour-overlay" style="display: none;">
-        <div id="tourSpotlight" class="tour-spotlight"></div>
-        <div id="tourTooltip" class="tour-tooltip">
-            <div class="title">Tour Step</div>
-            <div class="content">Tour content here</div>
-            <div class="actions">
-                <button class="tour-prev" onclick="prevTourStep()" style="display: none;">Previous</button>
-                <button class="tour-next" onclick="nextTourStep()">Next</button>
-                <button class="tour-done" onclick="endTour()" style="display: none;">Done</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contextual Tooltip -->
-    <div id="contextualTooltip" class="tooltip"></div>
-
-    <!-- Welcome Message -->
-    <div id="welcomeMessage" class="welcome-message" style="display: none;" onclick="this.style.display='none'">
-        🎉 Welcome back! Explore our latest actor videos →
-    </div>
+<main>
     <header>
-        <span id="userWelcome" style="margin-left:10px;font-weight:600;"></span>
+        <img src="renibg_img.png" alt="logo" width="220">
+        <h1>ACTORS 🎬</h1>
+
         <div class="left-section">
-            <img src="renibg_img.png" alt="Reni Studio's logo">
-
-            <form class="search-form" role="search">
-                <label for="search-input" class="sr-only"></label>
-                <input type="text" id="search-input" name="q" placeholder="Search" maxlength="300">
-                <button type="submit" aria-label="Search">🔍</button>
-            </form>
+            <a href="main.html" class="back-btn" aria-label="Back to main">←</a>
         </div>
-
-        <div class="right-section">
-            <button id="themeToggle" aria-label="Toggle Dark Mode" 
-style="
-width: 44px;
-height: 44px;
-border-radius: 50%;
-border: none;
-cursor: pointer;
-font-size: 1.2rem;
-background: var(--neutral);
-color: var(--text-secondary);
-transition: 0.3s;
-">
-🌙
-</button>
-            
-              <a href="loading2.html" class="message-link" aria-label="Messages">💬</a>
-                 <a href="loading2.html" class="account-link" aria-label="Account settings">👤</a>
-                  <a href="loading3.html" class="support-link" aria-label="Support">❓</a>
-        </div>
-      
     </header>
 
-    <main>
-       <nav class="box-container" id="boxContainer">
-    <a href="actorspage1.html" class="box new-feature">ACTORS 🎬</a>
-    <a href="#" class="box">TRAVEL VLOGGERS ✈️</a>
-    <a href="#" class="box">FOOD VIDEOS 🍚</a>
-    <a href="#" class="box">ENTERTAINMENT 🤣</a>
-    <a href="#" class="box">MOTIVATION VIDEOS 💪🏻</a>
-    <a href="#" class="box">TECH VIDEOS 🧑🏻‍💻</a>
-    <a href="#" class="box">GAMING 🎮</a>
-    <a href="#" class="box">EDUCATION 📚</a>
-    <a href="#" class="box">AGRICULTURE 👨‍🌾</a>
-    <a href="#" class="box">SPORTS 🚵‍♀️</a>
-    <a href="#" class="box">NEWS 🗞️</a>
-    <a href="#" class="box">ANIMALS 🦁</a>
-    <a href="#" class="box">FASHION 👕</a>
-    <a href="#" class="box">BEAUTY 💄</a>
-    <a href="#" class="box">OTHERS</a>
-</nav>
-    </main>
-    <script>
-        document.getElementById("search-input").focus();
-        const user = localStorage.getItem("username");
-if (user) {
-    document.getElementById("userWelcome").textContent = "Hi, " + user + " 👋";
-}
-const searchForm = document.querySelector(".search-form");
-const searchInput = document.getElementById("search-input");
-const boxes = document.querySelectorAll(".box");
+    <div class="options">
+        <button class="option-btn" onclick="goToPage('actorslong.html', this)">LONG VIDEOS</button>
+        <button class="option-btn" onclick="goToPage('actorsshort.html', this)">SHORT VIDEOS</button>
+    </div>
+</main>
 
-searchForm.addEventListener("submit", function(e) {
-    e.preventDefault(); // stop page reload
-
-    const value = searchInput.value.toLowerCase();
-
-    boxes.forEach(box => {
-        const text = box.textContent.toLowerCase();
-
-        if (text.includes(value)) {
-            box.style.display = "flex";
-        } else {
-            box.style.display = "none";
-        }
-    });
-});
-function checkEmpty() {
-    let visible = 0;
-
-    boxes.forEach(box => {
-        if (box.style.display !== "none") visible++;
-    });
-
-    let msg = document.getElementById("noResults");
-
-    if (!msg) {
-        msg = document.createElement("div");
-        msg.id = "noResults";
-        msg.style.textAlign = "center";
-        msg.style.marginTop = "20px";
-        msg.style.fontSize = "1.2rem";
-        msg.textContent = "No results found 😕";
-        document.querySelector("main").appendChild(msg);
-    }
-
-    msg.style.display = visible === 0 ? "block" : "none";
-}
-
-// Call after filtering
-searchInput.addEventListener("keyup", checkEmpty);
-</script>
 <script>
-    const searchInput = document.getElementById("search-input");
-    const boxes = document.querySelectorAll(".box");
-
-    searchInput.addEventListener("keyup", function() {
-        const value = searchInput.value.toLowerCase();
-
-        boxes.forEach(box => {
-            const text = box.textContent.toLowerCase();
-            box.style.display = text.includes(value) ? "flex" : "none";
-        });
-    });
-    </script>
-    <script>
-//  Disable Right Click
-document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-});
-// disable right click + dev tools
-//  Disable F12, Ctrl+Shift+I, Ctrl+U
-document.addEventListener("keydown", function(e) {
-
-    // F12
-    if (e.key === "F12") {
-        e.preventDefault();
-    }
-
-    // Ctrl+Shift+I (Inspect)
-    if (e.ctrlKey && e.shiftKey && e.key === "I") {
-        e.preventDefault();
-    }
-
-    // Ctrl+Shift+J (Console)
-    if (e.ctrlKey && e.shiftKey && e.key === "J") {
-        e.preventDefault();
-    }
-
-    // Ctrl+U (View Source)
-    if (e.ctrlKey && e.key === "u") {
-        e.preventDefault();
-    }
-});
-</script>
-
-<!-- Onboarding JavaScript -->
-<script>
-let currentTourStep = 0;
-const tourSteps = [
-    {
-        element: '.search-form',
-        title: '🔍 Search & Discover',
-        content: 'Use the search bar to find videos by category, actor, or topic. Try searching for "cooking" or "sports"!',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:first-child',
-        title: '🎬 Browse Categories',
-        content: 'Explore our 15+ video categories. Click on any category to see featured videos in that topic.',
-        position: 'top'
-    },
-    {
-        element: '.right-section .account-link',
-        title: '👤 Your Account',
-        content: 'Manage your profile, view your favorites, and update your preferences here.',
-        position: 'bottom'
-    },
-    {
-        element: '.right-section .support-link',
-        title: '❓ Contact & Support',
-        content: 'Get help, contact us, or reach out to our support team.',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:nth-child(2)',
-        title: '✈️ New Features',
-        content: 'Check out our latest additions like travel vlogs and tech videos!',
-        position: 'top'
-    },
-    {
-        element: '.box-container .box:nth-child(3)',
-        title: '🍚 Food Videos',
-        content: 'Discover exclusive videos featuring your favorite chefs and cooking techniques and recipes!',
-        position: 'top'
-    },
-    {
-        element: '.box-container .box:nth-child(4)',
-        title: '🤣 Humor Videos',
-        content: 'Click here to explore our latest humor videos and comedic content!',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:nth-child(5)',
-        title: '💪🏻 Motivation Videos',
-        content: 'Find inspiring and motivational videos to boost your day!',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:nth-child(6)',
-        title: '🧑🏻‍💻 Tech Videos',
-        content: 'Explore the latest in technology, coding tutorials, and gadget reviews!',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:nth-child(7)',
-        title: '🎮 Gaming Videos',
-        content: 'Discover the latest gaming videos, walkthroughs, and esports highlights!',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:nth-child(8)',
-        title: '📚 Education Videos',
-        content: 'Learn something new with our educational content across various subjects!',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:nth-child(9)',
-        title: '👨‍🌾 Agriculture Videos',
-        content: 'Explore the latest in agriculture, farming techniques, and rural life!',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:nth-child(10)',
-        title: '🚵‍♀️ Sports Videos',
-        content: 'Stay entertained with the latest sports highlights and athlete interviews!',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:nth-child(11)',
-        title: '🗞️ News Videos',
-        content: 'Catch up on the latest news and current events with our curated news videos!',
-        position: 'bottom'
-    },
-    {   
-        element: '.box-container .box:nth-child(12)',
-        title: '🦁 Animal Videos',
-        content: 'Discover adorable and fascinating animal videos from around the world!',
-        position: 'bottom'
-
-    },
-    {
-        element: '.box-container .box:nth-child(13)',
-        title: '👕 Fashion Videos',
-        content: 'Explore the latest fashion trends, runway shows, and style tips!',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:nth-child(14)',
-        title: '💄 Beauty Videos',
-        content: 'Discover beauty tutorials, product reviews, and skincare tips!',
-        position: 'bottom'
-    },
-    {
-        element: '.box-container .box:nth-child(15)',
-        title: '📺 More Categories',
-        content: 'Explore videos from various other categories and discover new favorites!',
-        position: 'bottom'
-    }
-];
-
-// Initialize onboarding
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if user has seen onboarding
-    if (!localStorage.getItem('onboarding-completed')) {
-        showOnboarding();
-    } else {
-        // Show welcome back message for returning users
-        showWelcomeBack();
-    }
-
-    // Initialize tooltips
-    initializeTooltips();
-});
-
-function showWelcomeBack() {
-    // Show welcome message for returning users (not first-time)
-    if (localStorage.getItem('onboarding-completed') && !localStorage.getItem('welcome-shown')) {
-        const welcomeMsg = document.getElementById('welcomeMessage');
-        welcomeMsg.style.display = 'block';
-
-        setTimeout(() => {
-            welcomeMsg.style.display = 'none';
-            localStorage.setItem('welcome-shown', 'true');
-        }, 5000);
-    }
-}
-
-function initializeTooltips() {
-    // Add tooltips to key elements
-    const tooltipElements = [
-        {
-            selector: '.box-container .box:first-child',
-            content: '🎭 Click here to explore actor videos, interviews, and behind-the-scenes content!',
-            position: 'top'
-        },
-        {
-            selector: '.search-form input',
-            content: '🔍 Search for specific videos, actors, or categories across our entire library.',
-            position: 'bottom'
-        },
-        {
-            selector: '.right-section .account-link',
-            content: '👤 Manage your profile, view favorites, and update your preferences.',
-            position: 'bottom'
-        },
-        {
-            selector: '.right-section .support-link',
-            content: '❓ Need help? Contact our support team or access FAQs here.',
-            position: 'bottom'
-        },
-            {
-                selector: '.box-container .box:nth-child(2)',
-                content: '✈️ Check out our new travel vlogs and new destination guides!',
-                position: 'top'
-            },
-            {
-                selector: '.box-container .box:nth-child(3)',
-                content: '🍚 Discover exclusive food videos featuring your favorite chefs and cooking techniques and recipes!',
-                position: 'top'
-            },
-            {
-                selector: '.box-container .box:nth-child(4)',
-                content: '🤣 Explore our latest humor videos and comedic content!',
-                position: 'bottom'
-            },
-            {
-                selector: '.box-container .box:nth-child(5)',
-                content: '💪🏻 Find inspiring and motivational videos to boost your day!',
-                position: 'bottom'
-            },
-            {
-                selector: '.box-container .box:nth-child(6)',
-                content: '🧑🏻‍💻 Explore the latest in technology, coding tutorials, and gadget reviews!',
-                position: 'bottom'
-            },
-            {
-                selector: '.box-container .box:nth-child(7)',
-                content: '🎮 Discover the latest gaming videos, walkthroughs, and esports highlights!',
-                position: 'bottom'
-            },
-            {
-                selector: '.box-container .box:nth-child(8)',
-                content: '📚 Learn something new with our educational content across various subjects!',
-                position: 'bottom'
-            },
-            {
-                selector: '.box-container .box:nth-child(9)',
-                content: '👨‍🌾 Explore the latest in agriculture, farming techniques, and rural life!',
-                position: 'bottom'
-            },
-            {
-                selector: '.box-container .box:nth-child(10)',
-                content: '🚵‍♀️ Stay entertained with the latest sports highlights and athlete interviews!',
-                position: 'bottom'
-            },
-            {
-                selector: '.box-container .box:nth-child(11)',
-                content: '🗞️ Catch up on the latest news and current events with our curated news videos!',
-                position: 'bottom'
-            },
-            {
-                selector: '.box-container .box:nth-child(12)',
-                content: '🦁 Discover adorable and fascinating animal videos from around the world!',
-                position: 'bottom'
-            },
-            {
-                selector: '.box-container .box:nth-child(13)',
-                content: '👕 Explore the latest fashion trends, runway shows, and style tips!',
-                position: 'bottom'
-            },
-            {
-                selector: '.box-container .box:nth-child(14)',
-                content: '💄 Discover beauty tutorials, product reviews, and skincare tips!',
-                position: 'bottom'
-            },
-                {
-                    selector: '.box-container .box:nth-child(15)',
-                    content: '📺 Explore videos from various other categories and discover new favorites!',
-                    position: 'bottom'
-                }
-    ];
-
-    tooltipElements.forEach(item => {
-        const element = document.querySelector(item.selector);
-        if (element) {
-            element.addEventListener('mouseenter', (e) => showTooltip(e.target, item.content, item.position));
-            element.addEventListener('mouseleave', hideTooltip);
-        }
-    });
-}
-
-function showTooltip(element, content, position) {
-    const tooltip = document.getElementById('contextualTooltip');
-    const rect = element.getBoundingClientRect();
-
-    tooltip.textContent = content;
-    tooltip.className = `tooltip ${position} show`;
-
-    // Position tooltip
-    if (position === 'top') {
-        tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
-        tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + 'px';
-    } else {
-        tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
-        tooltip.style.top = rect.bottom + 8 + 'px';
-    }
-
-    // Keep in viewport
-    const tooltipRect = tooltip.getBoundingClientRect();
-    if (tooltipRect.left < 10) {
-        tooltip.style.left = '10px';
-    }
-    if (tooltipRect.right > window.innerWidth - 10) {
-        tooltip.style.left = window.innerWidth - tooltipRect.width - 10 + 'px';
-    }
-}
-
-function hideTooltip() {
-    const tooltip = document.getElementById('contextualTooltip');
-    tooltip.classList.remove('show');
-}
-
-function showOnboarding() {
-    document.getElementById('onboardingOverlay').style.display = 'flex';
-}
-
-function skipOnboarding() {
-    document.getElementById('onboardingOverlay').style.display = 'none';
-    localStorage.setItem('onboarding-completed', 'true');
-}
-
-function startGuidedTour() {
-    document.getElementById('onboardingOverlay').style.display = 'none';
-    document.getElementById('tourOverlay').style.display = 'block';
-    currentTourStep = 0;
-    showTourStep();
-}
-
-function showTourStep() {
-    const step = tourSteps[currentTourStep];
-    const element = document.querySelector(step.element);
-
-    if (!element) return;
-
-    const rect = element.getBoundingClientRect();
-    const spotlight = document.getElementById('tourSpotlight');
-    const tooltip = document.getElementById('tourTooltip');
-
-    // Position spotlight
-    spotlight.style.left = rect.left - 8 + 'px';
-    spotlight.style.top = rect.top - 8 + 'px';
-    spotlight.style.width = rect.width + 16 + 'px';
-    spotlight.style.height = rect.height + 16 + 'px';
-
-    // Position tooltip
-    tooltip.querySelector('.title').textContent = step.title;
-    tooltip.querySelector('.content').textContent = step.content;
-
-    // Position tooltip based on step.position
-    const tooltipRect = tooltip.getBoundingClientRect();
-    let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
-    let top;
-
-    if (step.position === 'top') {
-        top = rect.top - tooltipRect.height - 10;
-    } else {
-        top = rect.bottom + 10;
-    }
-
-    // Keep tooltip in viewport
-    left = Math.max(10, Math.min(left, window.innerWidth - tooltipRect.width - 10));
-    top = Math.max(10, Math.min(top, window.innerHeight - tooltipRect.height - 10));
-
-    tooltip.style.left = left + 'px';
-    tooltip.style.top = top + 'px';
-
-    // Update buttons
-    const prevBtn = document.querySelector('.tour-prev');
-    const nextBtn = document.querySelector('.tour-next');
-    const doneBtn = document.querySelector('.tour-done');
-
-    prevBtn.style.display = currentTourStep > 0 ? 'inline-block' : 'none';
-    nextBtn.style.display = currentTourStep < tourSteps.length - 1 ? 'inline-block' : 'none';
-    doneBtn.style.display = currentTourStep === tourSteps.length - 1 ? 'inline-block' : 'none';
-}
-
-function nextTourStep() {
-    if (currentTourStep < tourSteps.length - 1) {
-        currentTourStep++;
-        showTourStep();
-    }
-}
-
-function prevTourStep() {
-    if (currentTourStep > 0) {
-        currentTourStep--;
-        showTourStep();
-    }
-}
-
-function endTour() {
-    document.getElementById('tourOverlay').style.display = 'none';
-    localStorage.setItem('onboarding-completed', 'true');
-
-    // Show success message
-    showToast('🎉 Welcome to RENI STUDIO\'S! Start exploring your favorite categories.', 'success');
-}
-
-// Toast notification function
-function showToast(message, type = 'info') {
-    const toast = document.createElement('div');
-    toast.textContent = message;
-    toast.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${type === 'success' ? 'oklch(60% 0.2 120)' : 'var(--accent)'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px oklch(0% 0 0 / 0.2);
-        z-index: 1001;
-        animation: slideInRight 0.3s ease-out;
-        max-width: 300px;
-    `;
-
-    document.body.appendChild(toast);
+function goToPage(page, btn) {
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
     setTimeout(() => {
-        toast.style.animation = 'slideOutRight 0.3s ease-in';
-        setTimeout(() => toast.remove(), 300);
-    }, 4000);
+        window.location.href = page;
+    }, 300);
 }
-
-// Add toast animations to CSS
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideInRight {
-        from { transform: translateX(100%); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes slideOutRight {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(100%); opacity: 0; }
-    }
-`;
-document.head.appendChild(style);
 </script>
-<div id="pageLoader" style="
-position: fixed;
-inset: 0;
-background: #000;
-display: flex;
-align-items: center;
-justify-content: center;
-z-index: 2000;
-color: white;
-font-size: 1.2rem;
-font-family: Inter;
-">
-Loading...
-</div>
 
-<script>
-window.addEventListener("load", () => {
-    document.getElementById("pageLoader").style.display = "none";
-});
-</script>
 </body>
-
 </html>

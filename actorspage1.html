@@ -11,18 +11,41 @@
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            background: black;
+
+            /* 🎬 Cinematic background */
+            background: radial-gradient(circle at top, #141414, #0b0b0f, #000);
             color: whitesmoke;
+
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             text-align: center;
+            overflow: hidden;
+        }
+
+        /* ✨ Moving glow */
+        .bg-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,198,255,0.25), transparent);
+            top: -100px;
+            left: -100px;
+            filter: blur(120px);
+            animation: moveGlow 12s infinite alternate;
+        }
+
+        @keyframes moveGlow {
+            0% { top: -100px; left: -100px; }
+            100% { top: 150px; left: 250px; }
         }
 
         main {
             width: 100%;
             max-width: 500px;
+            position: relative;
+            z-index: 2;
         }
 
         header img {
@@ -30,13 +53,25 @@
             margin: 0 auto 20px;
             width: 420px;
             height: 170px;
+
+            /* subtle hover zoom */
+            transition: 0.4s;
+        }
+
+        header img:hover {
+            transform: scale(1.05);
         }
 
         h1 {
-            font-family: olive village, serif;
+            font-family: 'Playfair Display', serif;
             font-size: 50px;
             margin-bottom: 30px;
             letter-spacing: 2px;
+
+            /* gradient text */
+            background: linear-gradient(90deg, #00c6ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Button Container */
@@ -53,92 +88,131 @@
             border-radius: 15px;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+
             backdrop-filter: blur(10px);
-            background: rgb(85, 193, 239);
-            color: whitesmoke;
-            border: 1px solid whitesmoke;
+            background: rgba(255,255,255,0.05);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.1);
+
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Hover Effect */
+        /* 🔥 Hover Glow Effect */
         .option-btn:hover {
             transform: scale(1.05);
-            background: rgba(0, 198, 255, 0.3);
+            box-shadow: 0 0 25px rgba(0,198,255,0.5);
+        }
+
+        /* ✨ Shine animation */
+        .option-btn::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255,255,255,0.2),
+                transparent
+            );
+            transform: rotate(25deg);
+            opacity: 0;
+        }
+
+        .option-btn:hover::before {
+            opacity: 1;
+            animation: shine 0.6s forwards;
+        }
+
+        @keyframes shine {
+            from { transform: translateX(-100%) rotate(25deg); }
+            to { transform: translateX(100%) rotate(25deg); }
         }
 
         /* Active / Selected */
         .option-btn.active {
-            background: #00c6ff;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
             color: black;
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(0,198,255,0.7);
+            box-shadow: 0 0 30px rgba(0,198,255,0.8);
         }
+
         .left-section {
             display: flex;
             align-items: center;
-             justify-content: flex-start;
-             margin-bottom: 22px;
+            justify-content: flex-start;
+            margin-bottom: 22px;
             gap: clamp(0.5rem, 2vw, 1rem);
-            color: skyblue;
-            text-decoration: none;
         }
-         .back-btn {
+
+        .back-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-             margin-bottom: 20px;
-            width: clamp(36px, 6vw, 44px);
-            height: clamp(36px, 6vw, 44px);
+            margin-bottom: 20px;
+
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background-color: white;
-             border: 2px solid lightcoral;
-            color: var(--text-secondary);
+
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+
+            color: white;
             text-decoration: none;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            transition: all 0.3s ease;
-            border-color: skyblue;
+            font-size: 18px;
+
+            transition: 0.3s;
         }
 
         .back-btn:hover {
-            background-color: var(--hover);
-            transform: translateX(-2px);
-            border-color: skyblue;
+            background: #00c6ff;
+            color: black;
+            transform: translateX(-3px) scale(1.1);
+            box-shadow: 0 0 20px #00c6ff;
         }
-        .back-btn:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-            border-color: lightcoral;
+
+        /* smooth transitions globally */
+        * {
+            transition: all 0.25s ease;
         }
     </style>
 </head>
 
 <body>
-    <main>
-        <header>
-            <img src="renibg_img.png" alt="logo" width="220">
-            <h1>ACTORS🎬</h1>
-             <div class="left-section">
+
+<div class="bg-glow"></div>
+
+<main>
+    <header>
+        <img src="renibg_img.png" alt="logo" width="220">
+        <h1>ACTORS 🎬</h1>
+
+        <div class="left-section">
             <a href="main.html" class="back-btn" aria-label="Back to main">←</a>
         </div>
-        </header>
+    </header>
 
-        <div class="options">
-           <button class="option-btn" onclick="goToPage('actorslong.html', this)">LONG VIDEOS</button>
-<button class="option-btn" onclick="goToPage('actorsshort.html', this)">SHORT VIDEOS</button>
-        </div>
-    </main>
+    <div class="options">
+        <button class="option-btn" onclick="goToPage('actorslong.html', this)">LONG VIDEOS</button>
+        <button class="option-btn" onclick="goToPage('actorsshort.html', this)">SHORT VIDEOS</button>
+    </div>
+</main>
 
-   <script>
-    function goToPage(page, btn) {
-        // highlight selected button
-        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+<script>
+function goToPage(page, btn) {
+    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
-        // small delay for animation effect
-        setTimeout(() => {
-            window.location.href = page;
-        }, 300);
-    }
+    setTimeout(() => {
+        window.location.href = page;
+    }, 300);
+}
 </script>
+
 </body>
 </html>
