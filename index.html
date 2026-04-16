@@ -20,10 +20,9 @@
                  alt="Reni Studio's logo featuring a stylized main image" 
                  style="width: clamp(200px, 50vw, 400px); height: auto; max-width: 100%;">
         </figure>
-
-        <nav>
+        
             <a href="loading.html" class="enter-btn">ENTER</a>
-        </nav>
+        
     </main>
     <script>
 // 🚫 Disable Right Click
@@ -65,88 +64,115 @@ document.addEventListener("keydown", function(e) {
         --neutral: oklch(20% 0 0);
     }
 
-    body {
-        margin: 0;
-        font-family: 'Inter', sans-serif;
-        background-color:  #020b12;
-        color: var(--text-primary);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: clamp(1rem, 5vw, 2rem);
-        
-    }
+ body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background: radial-gradient(circle at 20% 20%, oklch(30% 0.2 240 / 0.2), transparent 40%),
+                radial-gradient(circle at 80% 80%, oklch(50% 0.2 120 / 0.2), transparent 40%),
+                #020b12;
+
+    animation: bgMove 10s infinite alternate ease-in-out;
+}
+.enter-btn {
+    display: inline-block;
+    margin-top: 20px;
+
+    padding: clamp(0.75rem, 3vw, 1.5rem) clamp(1.5rem, 6vw, 3rem);
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    font-weight: 600;
+
+    color: black;
+    background: var(--accent);
+    border-radius: 10px;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px oklch(60% 0.2 240 / 0.3);
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+@keyframes bgMove {
+    0% { background-position: 0% 0%, 100% 100%; }
+    100% { background-position: 10% 10%, 90% 90%; }
+}
 
     main {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: clamp(1rem, 5vh, 2rem);
-        max-width: 800px;
-        width: 100%;
-    }
+    animation: fadeInUp 1s ease-out;
+}
 
-    h1 {
-        font-family: 'Playfair Display', serif;
-        font-size: clamp(2rem, 8vw, 4rem);
-        font-weight: 700;
-        margin: 0;
-        color: var(--text-primary);
-        text-shadow: 0 2px 4px oklch(0% 0 0 / 0.3);
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-    figure {
-        margin: 0;
-    }
+  h1 {
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, white, oklch(70% 0.2 240));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-    img {
-        border-radius: 12px;
-        box-shadow: 0 8px 32px oklch(0% 0 0 / 0.2);
-    }
+ figure {
+    animation: float 4s ease-in-out infinite;
+}
 
-    .enter-btn {
-        display: inline-block;
-        padding: clamp(0.75rem, 3vw, 1.5rem) clamp(1.5rem, 6vw, 3rem);
-        font-size: clamp(1rem, 4vw, 1.25rem);
-        font-weight: 600;
-        color: var(--bg-primary);
-        background-color: var(--accent);
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        text-decoration: none;
-        transition: all 0.3s ease-out-quart;
-        box-shadow: 0 4px 16px oklch(60% 0.2 240 / 0.3);
-    }
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
 
-    .enter-btn:hover, .enter-btn:focus {
-        background-color: oklch(70% 0.25 240);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px oklch(60% 0.2 240 / 0.4);
-    }
+   img {
+    transition: all 0.4s ease;
+}
 
-    .enter-btn:focus {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-    }
+img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px oklch(60% 0.2 240 / 0.4);
+}
 
-    @media (prefers-reduced-motion: reduce) {
-        .enter-btn {
-            transition: none;
-        }
-        .enter-btn:hover {
-            transform: none;
-        }
-    }
+   .enter-btn {
+    position: relative;
+    overflow: hidden;
+}
 
-    @media (prefers-color-scheme: dark) {
-        :root {
-            --bg-primary: oklch(10% 0 0);
-            --text-primary: oklch(90% 0 0);
-        }
-    }
+/* Glow pulse */
+.enter-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.enter-btn:hover::after {
+    opacity: 1;
+    animation: shine 1s;
+}
+
+@keyframes shine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
 </style>
 
 </html>
