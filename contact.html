@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -116,13 +116,25 @@ emailjs.init("4QUJ28g0GILgRc1VY");
 document.getElementById("contact-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    emailjs.sendForm("service_lu57i9l", "template_gup6jd9", this)
+    const form = this;
+
+    // Send to YOU
+    emailjs.sendForm("service_lu57i9l", "template_gup6jd9", form)
     .then(() => {
-        alert("Message sent successfully!");
-        this.reset(); // clears form
+        // Send AUTO REPLY
+        return emailjs.send("service_lu57i9l", "template_w0bri0j", {
+            user_name: form.user_name.value,
+            user_email: form.user_email.value,
+            message: form.message.value
+        });
     })
-    .catch(() => {
-        alert("Failed to send message");
+    .then(() => {
+        alert("REQUEST SENT! We will get back to you as soon as possible.");
+        form.reset();
+    })
+    .catch((error) => {
+        console.log(error); // 🔥 check this
+        alert("Error sending message");
     });
 });
 </script>
