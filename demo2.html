@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login - RENI STUDIO'S</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <main>
+        <header>
+            <figure>
+                <img src="renibg_img.png" alt="Reni Studio's logo" style="width: clamp(150px, 40vw, 300px); height: auto; max-width: 100%;">
+            </figure>
+            <h1>LOGIN</h1>
+        </header>
+
+       <form onsubmit="login(event)" class="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter Username" required maxlength="50" pattern="[A-Za-z0-9_]+" title="Letters, numbers, and underscores only">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter Password" required minlength="8">
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+         
+        </form>
+    </main>
+    <script>
+// 🚫 Disable Right Click
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+});
+
+// 🚫 Disable F12, Ctrl+Shift+I, Ctrl+U
+document.addEventListener("keydown", function(e) {
+
+    // F12
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+I (Inspect)
+    if (e.ctrlKey && e.shiftKey && e.key === "I") {
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+J (Console)
+    if (e.ctrlKey && e.shiftKey && e.key === "J") {
+        e.preventDefault();
+    }
+
+    // Ctrl+U (View Source)
+    if (e.ctrlKey && e.key === "u") {
+        e.preventDefault();
+    }
+});
+</script>
+</body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login - RENI STUDIO'S</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <main>
+        <header>
+            <figure>
+                <img src="renibg_img.png" alt="Reni Studio's logo" style="width: clamp(150px, 40vw, 300px); height: auto; max-width: 100%;">
+            </figure>
+            <h1>LOGIN</h1>
+        </header>
+
+       <form onsubmit="login(event)" class="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter Username" required maxlength="50" pattern="[A-Za-z0-9_]+" title="Letters, numbers, and underscores only">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter Password" required minlength="8">
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+         
+        </form>
+    </main>
+    <script>
+// 🚫 Disable Right Click
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+});
+
+// 🚫 Disable F12, Ctrl+Shift+I, Ctrl+U
+document.addEventListener("keydown", function(e) {
+
+    // F12
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+I (Inspect)
+    if (e.ctrlKey && e.shiftKey && e.key === "I") {
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+J (Console)
+    if (e.ctrlKey && e.shiftKey && e.key === "J") {
+        e.preventDefault();
+    }
+
+    // Ctrl+U (View Source)
+    if (e.ctrlKey && e.key === "u") {
+        e.preventDefault();
+    }
+});
+</script>
+</body>
+<script>
+function login(event) {
+    event.preventDefault();
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    // Save user data
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
+
+    // Redirect
+    window.location.href = "demo.html";
+}
+</script>
+
+<style>
+    :root {
+        --bg-primary: oklch(5% 0 0);
+        --text-primary: oklch(95% 0 0);
+        --accent: oklch(60% 0.2 240);
+        --neutral: oklch(20% 0 0);
+        --error: oklch(60% 0.25 15);
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1rem, 5vw, 2rem);
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(1rem, 5vh, 2rem);
+        max-width: 400px;
+        width: 100%;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    figure {
+        margin: 0;
+    }
+
+    img {
+        border-radius: 12px;
+        box-shadow: 0 8px 32px oklch(0% 0 0 / 0.2);
+    }
+
+    h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        font-weight: 700;
+        margin: 0;
+        color: var(--text-primary);
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(0.75rem, 3vh, 1.5rem);
+        width: 100%;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    label {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    input {
+        padding: 0.75rem;
+        border: 1px solid var(--neutral);
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: oklch(10% 0 0);
+        color: var(--text-primary);
+        transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px oklch(60% 0.2 240 / 0.2);
+    }
+
+    input:invalid:not(:placeholder-shown) {
+        border-color: var(--error);
+    }
+
+    .login-btn {
+        padding: clamp(0.75rem, 3vw, 1rem);
+        font-size: clamp(1rem, 4vw, 1.25rem);
+        font-weight: 600;
+        color: var(--bg-primary);
+        background-color: var(--accent);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease-out-quart;
+        box-shadow: 0 4px 16px oklch(60% 0.2 240 / 0.3);
+    }
+
+    .login-btn:hover, .login-btn:focus {
+        background-color: oklch(70% 0.25 240);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px oklch(60% 0.2 240 / 0.4);
+    }
+
+    .login-btn:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .login-btn, input {
+            transition: none;
+        }
+        .login-btn:hover {
+            transform: none;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-primary: oklch(10% 0 0);
+            --text-primary: oklch(90% 0 0);
+        }
+    }
+
+    /* RTL support */
+    [dir="rtl"] label, [dir="rtl"] input {
+        text-align: right;
+    }
+</style>
+
+</html>
+
+<style>
+    :root {
+        --bg-primary: oklch(5% 0 0);
+        --text-primary: oklch(95% 0 0);
+        --accent: oklch(60% 0.2 240);
+        --neutral: oklch(20% 0 0);
+        --error: oklch(60% 0.25 15);
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1rem, 5vw, 2rem);
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(1rem, 5vh, 2rem);
+        max-width: 400px;
+        width: 100%;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    figure {
+        margin: 0;
+    }
+
+    img {
+        border-radius: 12px;
+        box-shadow: 0 8px 32px oklch(0% 0 0 / 0.2);
+    }
+
+    h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        font-weight: 700;
+        margin: 0;
+        color: var(--text-primary);
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(0.75rem, 3vh, 1.5rem);
+        width: 100%;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    label {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    input {
+        padding: 0.75rem;
+        border: 1px solid var(--neutral);
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: oklch(10% 0 0);
+        color: var(--text-primary);
+        transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px oklch(60% 0.2 240 / 0.2);
+    }
+
+    input:invalid:not(:placeholder-shown) {
+        border-color: var(--error);
+    }
+
+    .login-btn {
+        padding: clamp(0.75rem, 3vw, 1rem);
+        font-size: clamp(1rem, 4vw, 1.25rem);
+        font-weight: 600;
+        color: var(--bg-primary);
+        background-color: var(--accent);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease-out-quart;
+        box-shadow: 0 4px 16px oklch(60% 0.2 240 / 0.3);
+    }
+
+    .login-btn:hover, .login-btn:focus {
+        background-color: oklch(70% 0.25 240);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px oklch(60% 0.2 240 / 0.4);
+    }
+
+    .login-btn:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .login-btn, input {
+            transition: none;
+        }
+        .login-btn:hover {
+            transform: none;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg-primary: oklch(10% 0 0);
+            --text-primary: oklch(90% 0 0);
+        }
+    }
+
+    /* RTL support */
+    [dir="rtl"] label, [dir="rtl"] input {
+        text-align: right;
+    }
+</style>
+
+</html>
