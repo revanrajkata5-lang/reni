@@ -50,7 +50,7 @@
             align-items: center;
             gap: clamp(0.5rem, 2vw, 1rem);
             color: black;
-            text-colour: black;
+            text-decoration: none;
         }
 
         .back-btn {
@@ -177,7 +177,7 @@
             margin-bottom: 0.5rem;
             color: var(--text-primary);
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -308,7 +308,7 @@
 
         <div class="video-grid" id="videoGrid">
             <!-- Sample videos - in real app, these would come from a database/API -->
-            <div class="video-card" data-category="interviews" onclick="playVideo('Actor Interview 1')">
+            <div class="video-card" data-category="interviews" onclick="playVideo('Actor video 1')">
                 <div class="video-thumbnail">
                     <div class="play-btn">▶️</div>
                 </div>

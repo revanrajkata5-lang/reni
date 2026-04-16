@@ -727,12 +727,12 @@ searchForm.addEventListener("submit", function(e) {
     });
     </script>
     <script>
-// 🚫 Disable Right Click
+//  Disable Right Click
 document.addEventListener("contextmenu", function(e) {
     e.preventDefault();
 });
 
-// 🚫 Disable F12, Ctrl+Shift+I, Ctrl+U
+//  Disable F12, Ctrl+Shift+I, Ctrl+U
 document.addEventListener("keydown", function(e) {
 
     // F12
@@ -780,9 +780,94 @@ const tourSteps = [
         position: 'bottom'
     },
     {
-        element: '.right-section .message-link',
-        title: '💬 Messages & Support',
-        content: 'Get help, contact creators, or reach out to our support team.',
+        element: '.right-section .support-link',
+        title: '❓ Contact & Support',
+        content: 'Get help, contact us, or reach out to our support team.',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:nth-child(2)',
+        title: '✈️ New Features',
+        content: 'Check out our latest additions like travel vlogs and tech videos!',
+        position: 'top'
+    },
+    {
+        element: '.box-container .box:nth-child(3)',
+        title: '🍚 Food Videos',
+        content: 'Discover exclusive videos featuring your favorite chefs and cooking techniques and recipes!',
+        position: 'top'
+    },
+    {
+        element: '.box-container .box:nth-child(4)',
+        title: '🤣 Humor Videos',
+        content: 'Click here to explore our latest humor videos and comedic content!',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:nth-child(5)',
+        title: '💪🏻 Motivation Videos',
+        content: 'Find inspiring and motivational videos to boost your day!',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:nth-child(6)',
+        title: '🧑🏻‍💻 Tech Videos',
+        content: 'Explore the latest in technology, coding tutorials, and gadget reviews!',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:nth-child(7)',
+        title: '🎮 Gaming Videos',
+        content: 'Discover the latest gaming videos, walkthroughs, and esports highlights!',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:nth-child(8)',
+        title: '📚 Education Videos',
+        content: 'Learn something new with our educational content across various subjects!',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:nth-child(9)',
+        title: '👨‍🌾 Agriculture Videos',
+        content: 'Explore the latest in agriculture, farming techniques, and rural life!',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:nth-child(10)',
+        title: '🚵‍♀️ Sports Videos',
+        content: 'Stay entertained with the latest sports highlights and athlete interviews!',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:nth-child(11)',
+        title: '🗞️ News Videos',
+        content: 'Catch up on the latest news and current events with our curated news videos!',
+        position: 'bottom'
+    },
+    {   
+        element: '.box-container .box:nth-child(12)',
+        title: '🦁 Animal Videos',
+        content: 'Discover adorable and fascinating animal videos from around the world!',
+        position: 'bottom'
+
+    },
+    {
+        element: '.box-container .box:nth-child(13)',
+        title: '👕 Fashion Videos',
+        content: 'Explore the latest fashion trends, runway shows, and style tips!',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:nth-child(14)',
+        title: '💄 Beauty Videos',
+        content: 'Discover beauty tutorials, product reviews, and skincare tips!',
+        position: 'bottom'
+    },
+    {
+        element: '.box-container .box:nth-child(15)',
+        title: '📺 More Categories',
+        content: 'Explore videos from various other categories and discover new favorites!',
         position: 'bottom'
     }
 ];
@@ -831,7 +916,82 @@ function initializeTooltips() {
             selector: '.right-section .account-link',
             content: '👤 Manage your profile, view favorites, and update your preferences.',
             position: 'bottom'
-        }
+        },
+        {
+            selector: '.right-section .support-link',
+            content: '❓ Need help? Contact our support team or access FAQs here.',
+            position: 'bottom'
+        },
+            {
+                selector: '.box-container .box:nth-child(2)',
+                content: '✈️ Check out our new travel vlogs and new destination guides!',
+                position: 'top'
+            },
+            {
+                selector: '.box-container .box:nth-child(3)',
+                content: '🍚 Discover exclusive food videos featuring your favorite chefs and cooking techniques and recipes!',
+                position: 'top'
+            },
+            {
+                selector: '.box-container .box:nth-child(4)',
+                content: '🤣 Explore our latest humor videos and comedic content!',
+                position: 'bottom'
+            },
+            {
+                selector: '.box-container .box:nth-child(5)',
+                content: '💪🏻 Find inspiring and motivational videos to boost your day!',
+                position: 'bottom'
+            },
+            {
+                selector: '.box-container .box:nth-child(6)',
+                content: '🧑🏻‍💻 Explore the latest in technology, coding tutorials, and gadget reviews!',
+                position: 'bottom'
+            },
+            {
+                selector: '.box-container .box:nth-child(7)',
+                content: '🎮 Discover the latest gaming videos, walkthroughs, and esports highlights!',
+                position: 'bottom'
+            },
+            {
+                selector: '.box-container .box:nth-child(8)',
+                content: '📚 Learn something new with our educational content across various subjects!',
+                position: 'bottom'
+            },
+            {
+                selector: '.box-container .box:nth-child(9)',
+                content: '👨‍🌾 Explore the latest in agriculture, farming techniques, and rural life!',
+                position: 'bottom'
+            },
+            {
+                selector: '.box-container .box:nth-child(10)',
+                content: '🚵‍♀️ Stay entertained with the latest sports highlights and athlete interviews!',
+                position: 'bottom'
+            },
+            {
+                selector: '.box-container .box:nth-child(11)',
+                content: '🗞️ Catch up on the latest news and current events with our curated news videos!',
+                position: 'bottom'
+            },
+            {
+                selector: '.box-container .box:nth-child(12)',
+                content: '🦁 Discover adorable and fascinating animal videos from around the world!',
+                position: 'bottom'
+            },
+            {
+                selector: '.box-container .box:nth-child(13)',
+                content: '👕 Explore the latest fashion trends, runway shows, and style tips!',
+                position: 'bottom'
+            },
+            {
+                selector: '.box-container .box:nth-child(14)',
+                content: '💄 Discover beauty tutorials, product reviews, and skincare tips!',
+                position: 'bottom'
+            },
+                {
+                    selector: '.box-container .box:nth-child(15)',
+                    content: '📺 Explore videos from various other categories and discover new favorites!',
+                    position: 'bottom'
+                }
     ];
 
     tooltipElements.forEach(item => {
