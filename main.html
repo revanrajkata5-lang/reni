@@ -165,6 +165,23 @@ body::after {
             outline: 2px solid var(--accent);
             outline-offset: 6px;
         }
+        .upload-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(36px, 6vw, 44px);
+    height: clamp(36px, 6vw, 44px);
+    border-radius: 50%;
+    background-color: var(--neutral);
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.upload-link:hover {
+    background-color: var(--hover);
+    transform: scale(1.1);
+}
         .message-link {
             display: flex;
             align-items: center;
@@ -684,6 +701,7 @@ body, header, .box {
 
 
 <body>
+    <input type="file" id="videoUpload" accept="video/*" style="display:none;">
   
     <!-- Onboarding Welcome Modal -->
     <div id="onboardingOverlay" class="onboarding-overlay" style="display: none;">
@@ -758,6 +776,11 @@ body, header, .box {
         </div>
 
         <div class="right-section">
+         <button class="upload-link" onclick="openUpload()">
+    <i data-lucide="upload"></i>
+</button>
+            
+</a>
             
 
 
@@ -1339,8 +1362,27 @@ Loading...
 </div>
 
 <script>
+    document.getElementById("videoUpload").addEventListener("change", function() {
+    const file = this.files[0];
+
+    if (file) {
+        localStorage.setItem("uploadedVideo", file.name); // optional
+        window.location.href = "uploadvideo.html"; // redirect AFTER select
+    }
+});
 window.addEventListener("load", () => {
     document.getElementById("pageLoader").style.display = "none";
+});
+function openUpload() {
+    document.getElementById("videoUpload").click();
+}
+
+document.getElementById("videoUpload").addEventListener("change", function() {
+    const file = this.files[0];
+
+    if (file) {
+        alert("🎬 Selected: " + file.name);
+    }
 });
 </script>
 <script>
