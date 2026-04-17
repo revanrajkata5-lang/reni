@@ -218,34 +218,40 @@ input:focus, textarea:focus {
 
 <script>
 emailjs.init("4QUJ28g0GILgRc1VY");
-
 document.getElementById("contact-form").addEventListener("submit", function(e) {
     e.preventDefault();
 
     const form = this;
 
-    // ⚡ SHOW SUCCESS IMMEDIATELY
+    // store values BEFORE reset
+    const userName = form.user_name.value;
+    const userEmail = form.user_email.value;
+    const message = form.message.value;
+
+    // show success UI
     document.getElementById("successBox").classList.add("active");
 
     setTimeout(() => {
         document.getElementById("successBox").classList.remove("active");
     }, 2500);
 
-    form.reset();
-
-    // 🚀 Send emails in background (no waiting)
+    // send emails
     emailjs.sendForm("service_lu57i9l", "template_gup6jd9", form)
     .then(() => {
         return emailjs.send("service_lu57i9l", "template_w0bri0j", {
-            user_name: form.user_name.value,
-            user_email: form.user_email.value,
-            message: form.message.value
+            user_name: userName,
+            user_email: userEmail,
+            message: message
         });
+    })
+    .then(() => {
+        form.reset(); // ✅ reset AFTER sending
     })
     .catch((error) => {
         console.log("Email error:", error);
     });
 });
+
 </script>
         </section>
     </main>
