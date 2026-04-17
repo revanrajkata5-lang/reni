@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --bg-primary: oklch(5% 0 0);
@@ -658,39 +659,32 @@ body, header, .box {
     background: var(--hover);
     transform: scale(1.1);
 }
+.box svg {
+    width: 22px;
+    height: 22px;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
     </style>
      <script>
         if (!localStorage.getItem("username")) {
             window.location.href = "login.html";
         }
+       
+       
+
     </script>
 </head>
 
+
+
 <body>
-   <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const toggleBtn = document.getElementById("themeToggle");
-
-    // Load saved theme
-    if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark-mode");
-        toggleBtn.textContent = "☀️";
-    }
-
-    // Toggle theme
-    toggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-
-        if (document.body.classList.contains("dark-mode")) {
-            localStorage.setItem("theme", "dark");
-            toggleBtn.textContent = "☀️";
-        } else {
-            localStorage.setItem("theme", "light");
-            toggleBtn.textContent = "🌙";
-        }
-    });
-});
-</script>
+  
     <!-- Onboarding Welcome Modal -->
     <div id="onboardingOverlay" class="onboarding-overlay" style="display: none;">
         <div class="onboarding-modal">
@@ -757,49 +751,78 @@ document.addEventListener("DOMContentLoaded", () => {
             <form class="search-form" role="search">
                 <label for="search-input" class="sr-only"></label>
                 <input type="text" id="search-input" name="q" placeholder="Search" maxlength="300">
-                <button type="submit" aria-label="Search">🔍</button>
+              <button type="submit" aria-label="Search">
+    <i data-lucide="search"></i>
+</button>
             </form>
         </div>
 
         <div class="right-section">
-            <button id="themeToggle" aria-label="Toggle Dark Mode" 
-style="
-width: 44px;
-height: 44px;
-border-radius: 50%;
-border: none;
-cursor: pointer;
-font-size: 1.2rem;
-background: var(--neutral);
-color: var(--text-secondary);
-transition: 0.3s;
-">
-🌙
-</button>
             
-              <a href="loading2.html" class="message-link" aria-label="Messages">💬</a>
-                 <a href="loading2.html" class="account-link" aria-label="Account settings">👤</a>
-                  <a href="loading3.html" class="support-link" aria-label="Support">❓</a>
+
+
+            
+           <a href="loading2.html" class="message-link">
+    <i data-lucide="message-circle"></i>
+</a>
+
+<a href="loading2.html" class="account-link">
+    <i data-lucide="user"></i>
+</a>
+
+<a href="loading3.html" class="support-link">
+    <i data-lucide="help-circle"></i>
+</a>
         </div>
       
     </header>
 
     <main>
        <nav class="box-container" id="boxContainer">
-    <a href="actorspage1.html" class="box new-feature">ACTORS 🎬</a>
-    <a href="#" class="box">TRAVEL VLOGGERS ✈️</a>
-    <a href="#" class="box">FOOD VIDEOS 🍚</a>
-    <a href="#" class="box">ENTERTAINMENT 🤣</a>
-    <a href="#" class="box">MOTIVATION VIDEOS 💪🏻</a>
-    <a href="#" class="box">TECH VIDEOS 🧑🏻‍💻</a>
-    <a href="#" class="box">GAMING 🎮</a>
-    <a href="#" class="box">EDUCATION 📚</a>
-    <a href="#" class="box">AGRICULTURE 👨‍🌾</a>
-    <a href="#" class="box">SPORTS 🚵‍♀️</a>
-    <a href="#" class="box">NEWS 🗞️</a>
-    <a href="#" class="box">ANIMALS 🦁</a>
-    <a href="#" class="box">FASHION 👕</a>
-    <a href="#" class="box">BEAUTY 💄</a>
+    <a href="actorspage1.html" class="box">
+       <i data-lucide="film"></i>
+    ACTORS
+</a>
+    <a href="#" class="box">
+         <i data-lucide="map"></i>
+    TRAVEL VLOGGERS
+</a>
+    <a href="#" class="box">
+        <i data-lucide="utensils"></i>
+        FOOD VIDEOS </a>
+    <a href="#" class="box">
+        <i data-lucide="smile"></i>
+        ENTERTAINMENT </a>
+    <a href="#" class="box">
+        <i data-lucide="zap"></i>
+        MOTIVATION VIDEOS </a>
+    <a href="#" class="box">
+        <i data-lucide="cpu"></i>
+        TECH VIDEOS </a>
+    <a href="#" class="box">
+        <i data-lucide="gamepad-2"></i>
+        GAMING </a>
+    <a href="#" class="box">
+        <i data-lucide="book-open"></i>
+        EDUCATION </a>
+    <a href="#" class="box">
+        <i data-lucide="leaf"></i>
+        AGRICULTURE </a>
+    <a href="#" class="box">
+        <i data-lucide="activity"></i>
+        SPORTS </a>
+    <a href="#" class="box">
+        <i data-lucide="newspaper"></i>
+        NEWS </a>
+    <a href="#" class="box">
+        <i data-lucide="paw-print"></i>
+        ANIMALS </a>
+    <a href="#" class="box">
+        <i data-lucide="shirt"></i>
+        FASHION </a>
+    <a href="#" class="box">
+        <i data-lucide="heart"></i>
+        BEAUTY </a>
     <a href="#" class="box">OTHERS</a>
 </nav>
     </main>
@@ -1319,6 +1342,9 @@ Loading...
 window.addEventListener("load", () => {
     document.getElementById("pageLoader").style.display = "none";
 });
+</script>
+<script>
+lucide.createIcons();
 </script>
 </body>
 

@@ -180,6 +180,23 @@
         * {
             transition: all 0.25s ease;
         }
+        h1 svg {
+    margin-left: 8px;
+}
+
+.back-btn svg {
+    pointer-events: none;
+}
+.option-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.option-btn svg {
+    flex-shrink: 0;
+}
     </style>
 </head>
 
@@ -190,17 +207,43 @@
 <main>
     <header>
         <img src="renibg_img.png" alt="logo" width="220">
-        <h1>ACTORS 🎬</h1>
-
+       <h1>
+ACTORS 
+<svg width="28" height="28" viewBox="0 0 24 24" 
+     fill="none" stroke="currentColor" stroke-width="2" 
+     stroke-linecap="round" stroke-linejoin="round"
+     style="vertical-align: middle;">
+    
+    <!-- Film / video icon -->
+    <rect x="3" y="3" width="18" height="18" rx="2"/>
+    <polygon points="10,8 16,12 10,16" fill="currentColor"/>
+</svg>
+</h1>
         <div class="left-section">
-            <a href="main.html" class="back-btn" aria-label="Back to main">←</a>
+           <a href="main.html" class="back-btn" aria-label="Back to main">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M15 18l-6-6 6-6"/>
+</svg>
+</a>
         </div>
     </header>
 
-    <div class="options">
-        <button class="option-btn" onclick="goToPage('actorslong.html', this)">LONG VIDEOS</button>
-        <button class="option-btn" onclick="goToPage('actorsshort.html', this)">SHORT VIDEOS</button>
-    </div>
+   <div class="options">
+    <button class="option-btn" onclick="goToPage('actorslong.html', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="M7 3v4M17 3v4M7 17v4M17 17v4" stroke="currentColor" stroke-width="2"/>
+        </svg>
+        LONG VIDEOS
+    </button>
+
+    <button class="option-btn" onclick="goToPage('actorsshort.html', this)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5,3 19,12 5,21"/>
+        </svg>
+        SHORT VIDEOS
+    </button>
+</div>
 </main>
 
 <script>
