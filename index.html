@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <div class="cinematic-overlay"></div>
     <main>
         <header>
             <h1>WELCOME TO</h1>
@@ -21,42 +22,90 @@
                  style="width: clamp(200px, 50vw, 400px); height: auto; max-width: 100%;">
         </figure>
         
-            <a href="loading.html" class="enter-btn">ENTER</a>
+          
         
     </main>
-    <script>
-// 🚫 Disable Right Click
-document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-});
+  <script>
+// Start cinematic transition after 0.9s
+setTimeout(function () {
+    document.body.classList.add("transitioning");
 
-// 🚫 Disable F12, Ctrl+Shift+I, Ctrl+U
+    // Wait for animation to complete, then redirect
+    setTimeout(function () {
+        window.location.href = "loading.html";
+    }, 900);
+
+}, 900);
+// Disable F12, Ctrl+Shift+I, Ctrl+U
 document.addEventListener("keydown", function(e) {
 
-    // F12
-    if (e.key === "F12") {
-        e.preventDefault();
-    }
+    if (e.key === "F12") e.preventDefault();
 
-    // Ctrl+Shift+I (Inspect)
-    if (e.ctrlKey && e.shiftKey && e.key === "I") {
-        e.preventDefault();
-    }
+    if (e.ctrlKey && e.shiftKey && e.key === "I") e.preventDefault();
 
-    // Ctrl+Shift+J (Console)
-    if (e.ctrlKey && e.shiftKey && e.key === "J") {
-        e.preventDefault();
-    }
+    if (e.ctrlKey && e.shiftKey && e.key === "J") e.preventDefault();
 
-    // Ctrl+U (View Source)
-    if (e.ctrlKey && e.key === "u") {
-        e.preventDefault();
-    }
+    if (e.ctrlKey && e.key === "u") e.preventDefault();
 });
 </script>
 </body>
 
 <style>
+    /* Cinematic overlay */
+.cinematic-overlay {
+    position: fixed;
+    inset: 0;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Trigger animation */
+body.transitioning .cinematic-overlay {
+    animation: cinematicFade 0.8s forwards;
+}
+
+@keyframes cinematicFade {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Logo cinematic zoom */
+body.transitioning img {
+    animation: logoZoom 0.8s forwards;
+}
+
+@keyframes logoZoom {
+    0% {
+        transform: scale(1);
+        filter: blur(0px);
+    }
+    100% {
+        transform: scale(1.2);
+        filter: blur(6px);
+        opacity: 0;
+    }
+}
+
+/* Text fade */
+body.transitioning h1 {
+    animation: textFade 0.6s forwards;
+}
+
+@keyframes textFade {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
     :root {
         --bg-primary: oklch(61.065% 0.24313 28.567);
         --text-primary: oklch(95% 0 0);

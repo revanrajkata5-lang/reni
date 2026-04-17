@@ -1,218 +1,227 @@
 <!DOCTYPE html>
-<html lang="en">    
+<html lang="en">
+
 <head>
-    <title>Actors - RENI STUDIO'S</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <title>RENI STUDIO'S</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-
-            /* 🎬 Cinematic background */
-            background: radial-gradient(circle at top, #141414, #0b0b0f, #000);
-            color: whitesmoke;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        /* ✨ Moving glow */
-        .bg-glow {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0,198,255,0.25), transparent);
-            top: -100px;
-            left: -100px;
-            filter: blur(120px);
-            animation: moveGlow 12s infinite alternate;
-        }
-
-        @keyframes moveGlow {
-            0% { top: -100px; left: -100px; }
-            100% { top: 150px; left: 250px; }
-        }
-
-        main {
-            width: 100%;
-            max-width: 500px;
-            position: relative;
-            z-index: 2;
-        }
-
-        header img {
-            display: block;
-            margin: 0 auto 20px;
-            width: 420px;
-            height: 170px;
-
-            /* subtle hover zoom */
-            transition: 0.4s;
-        }
-
-        header img:hover {
-            transform: scale(1.05);
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 50px;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-
-            /* gradient text */
-            background: linear-gradient(90deg, #00c6ff, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Button Container */
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* Buttons */
-        .option-btn {
-            padding: 20px;
-            font-size: 18px;
-            border-radius: 15px;
-            border: none;
-            cursor: pointer;
-
-            backdrop-filter: blur(10px);
-            background: rgba(255,255,255,0.05);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.1);
-
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* 🔥 Hover Glow Effect */
-        .option-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(0,198,255,0.5);
-        }
-
-        /* ✨ Shine animation */
-        .option-btn::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255,255,255,0.2),
-                transparent
-            );
-            transform: rotate(25deg);
-            opacity: 0;
-        }
-
-        .option-btn:hover::before {
-            opacity: 1;
-            animation: shine 0.6s forwards;
-        }
-
-        @keyframes shine {
-            from { transform: translateX(-100%) rotate(25deg); }
-            to { transform: translateX(100%) rotate(25deg); }
-        }
-
-        /* Active / Selected */
-        .option-btn.active {
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-            color: black;
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(0,198,255,0.8);
-        }
-
-        .left-section {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            margin-bottom: 22px;
-            gap: clamp(0.5rem, 2vw, 1rem);
-        }
-
-        .back-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.2);
-
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            background: #00c6ff;
-            color: black;
-            transform: translateX(-3px) scale(1.1);
-            box-shadow: 0 0 20px #00c6ff;
-        }
-
-        /* smooth transitions globally */
-        * {
-            transition: all 0.25s ease;
-        }
-    </style>
 </head>
 
 <body>
+    <div class="cinematic-overlay"></div>
+    <main>
+        <header>
+            <h1>WELCOME TO</h1>
+        </header>
 
-<div class="bg-glow"></div>
+        <figure>
+            <img src="renibg_img.png"
+                 alt="Reni Studio's logo featuring a stylized main image" 
+                 style="width: clamp(200px, 50vw, 400px); height: auto; max-width: 100%;">
+        </figure>
+        
+          
+        
+    </main>
+  <script>
+// Start cinematic transition after 0.9s
+setTimeout(function () {
+    document.body.classList.add("transitioning");
 
-<main>
-    <header>
-        <img src="renibg_img.png" alt="logo" width="220">
-        <h1>ACTORS 🎬</h1>
+    // Wait for animation to complete, then redirect
+    setTimeout(function () {
+        window.location.href = "loading.html";
+    }, 900);
 
-        <div class="left-section">
-            <a href="main.html" class="back-btn" aria-label="Back to main">←</a>
-        </div>
-    </header>
+}, 900);
+// Disable F12, Ctrl+Shift+I, Ctrl+U
+document.addEventListener("keydown", function(e) {
 
-    <div class="options">
-        <button class="option-btn" onclick="goToPage('actorslong.html', this)">LONG VIDEOS</button>
-        <button class="option-btn" onclick="goToPage('actorsshort.html', this)">SHORT VIDEOS</button>
-    </div>
-</main>
+    if (e.key === "F12") e.preventDefault();
 
-<script>
-function goToPage(page, btn) {
-    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    if (e.ctrlKey && e.shiftKey && e.key === "I") e.preventDefault();
 
-    setTimeout(() => {
-        window.location.href = page;
-    }, 300);
-}
+    if (e.ctrlKey && e.shiftKey && e.key === "J") e.preventDefault();
+
+    if (e.ctrlKey && e.key === "u") e.preventDefault();
+});
 </script>
-
 </body>
+
+<style>
+    /* Cinematic overlay */
+.cinematic-overlay {
+    position: fixed;
+    inset: 0;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Trigger animation */
+body.transitioning .cinematic-overlay {
+    animation: cinematicFade 0.8s forwards;
+}
+
+@keyframes cinematicFade {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Logo cinematic zoom */
+body.transitioning img {
+    animation: logoZoom 0.8s forwards;
+}
+
+@keyframes logoZoom {
+    0% {
+        transform: scale(1);
+        filter: blur(0px);
+    }
+    100% {
+        transform: scale(1.2);
+        filter: blur(6px);
+        opacity: 0;
+    }
+}
+
+/* Text fade */
+body.transitioning h1 {
+    animation: textFade 0.6s forwards;
+}
+
+@keyframes textFade {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+    :root {
+        --bg-primary: oklch(61.065% 0.24313 28.567);
+        --text-primary: oklch(95% 0 0);
+        --accent: oklch(60% 0.2 240);
+        --neutral: oklch(20% 0 0);
+    }
+
+ body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background: radial-gradient(circle at 20% 20%, oklch(30% 0.2 240 / 0.2), transparent 40%),
+                radial-gradient(circle at 80% 80%, oklch(50% 0.2 120 / 0.2), transparent 40%),
+                #020b12;
+
+    animation: bgMove 10s infinite alternate ease-in-out;
+}
+.enter-btn {
+    display: inline-block;
+    margin-top: 20px;
+
+    padding: clamp(0.75rem, 3vw, 1.5rem) clamp(1.5rem, 6vw, 3rem);
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    font-weight: 600;
+
+    color: black;
+    background: var(--accent);
+    border-radius: 10px;
+    text-decoration: none;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px oklch(60% 0.2 240 / 0.3);
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+@keyframes bgMove {
+    0% { background-position: 0% 0%, 100% 100%; }
+    100% { background-position: 10% 10%, 90% 90%; }
+}
+
+    main {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+  h1 {
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, white, oklch(70% 0.2 240));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+ figure {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+   img {
+    transition: all 0.4s ease;
+}
+
+img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px oklch(60% 0.2 240 / 0.4);
+}
+
+   .enter-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow pulse */
+.enter-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 8px;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.enter-btn:hover::after {
+    opacity: 1;
+    animation: shine 1s;
+}
+
+@keyframes shine {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+}
+</style>
+
 </html>
