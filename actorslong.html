@@ -1,527 +1,414 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Long Videos - Actors - RENI NOW</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        :root {
-            --bg-primary: oklch(5% 0 0);
-            --bg-secondary: oklch(95% 0 0);
-            --text-primary: oklch(10% 0 0);
-            --text-secondary: oklch(90% 0 0);
-            --accent: oklch(60% 0.2 240);
-            --neutral: oklch(80% 0.05 0);
-            --hover: oklch(70% 0.1 240);
-        }
+    
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+     <a href="actorspage1.html" class="back-btn"><</a>
+    <img src="reninowbg.png" alt="logo" style="width:52px;height:52px;">
+    <a class="wordmark" href="main.html">RENI<span>NOW</span></a>
+    <div class="search-wrap">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" placeholder="Search...">
+    </div>
+  </div>
+  <div class="nav-right">
+    <!-- Messages -->
+    <a href="#" onclick="navigateTo('account.html')" class="nav-icon" title="Messages">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+    </a>
+    <!-- Account -->
+    <a href="account.html" onclick="navigateTo('account.html')" class="nav-icon" title="Account">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+    </a>
+    <!-- Support -->
+    <a href="contact.html" onclick="navigateTo('contact.html')" class="nav-icon" title="Support">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/>
+      </svg>
+    </a>
+  </div>
+</nav>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <div class="sidebar-section">
+    <div class="sidebar-label">Account</div>
+    <a href="account.html" onclick="navigateTo('account.html')" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </a>
+    <a href="contact.html" onclick="navigateTo('contact.html')" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+      Help & Contact
+    </a>
+  </div>
+</aside>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: rgb(168, 213, 230);
-            color: var(--text-secondary);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
+<!-- MAIN CONTENT -->
+<main class="content">
 
-        /* Header */
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: clamp(0.5rem, 2vw, 1rem);
-            background-color: var(--bg-secondary);
-            box-shadow: 0 2px 8px oklch(0% 0 0 / 0.1);
-        }
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — RENI NOW</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --black:#060608;--surface:#0f0f12;--surface-2:#17171c;
+      --border:rgba(255,255,255,0.07);--border-hover:rgba(255,255,255,0.15);
+      --text:#f0f0f2;--text-muted:#7a7a8c;
+      --accent:#e8c97a;--accent-dim:rgba(232,201,122,0.12);
+      --error:#e84b4b;
+      --font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;
+      --nav-h: 70px;
+  --sidebar-w: 240px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html,body{width:100%;min-height:100%;}
+    body{
+      font-family:var(--font-body);background:var(--black);color:var(--text);
+      display:flex;align-items:relative;justify-content:relative;
+      min-height:100vh;padding:24px;-webkit-font-smoothing:antialiased;
+    }
+    
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 28px;
+      background:rgba(6,6,8,0.9);
+      border-bottom:1px solid var(--border);
+      backdrop-filter:blur(16px);
+    }
+    .nav-left{display:flex;align-items:center;gap:20px;}
+   
+    .wordmark{
+      font-family:var(--font-display);font-size:26px;
+      letter-spacing:0.08em;color:var(--text);text-decoration:none;
+      white-space:nowrap;
+    }
+    .wordmark span{color:var(--accent);}
+.back-btn{
+      width:36px;height:36px;border-radius:7px;
+      background:black;border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--text-muted);text-decoration:none;
+      transition:color 0.2s,border-color 0.2s;
+    }
+    .back-btn:hover{color:#FFCB74;border-color:var(--border-hover);}
+    .search-wrap{
+      position:relative;display:flex;align-items:center;
+    }
+    .search-wrap svg{
+      position:absolute;left:12px;pointer-events:none;
+      color:var(--text-muted);
+    }
+    .search-wrap input{
+      background:var(--surface-2);border:1px solid var(--border);
+      border-radius:8px;padding:9px 14px 9px 38px;
+      font-size:13px;color:var(--text);font-family:var(--font-body);
+      width:240px;outline:none;transition:border-color 0.2s,width 0.3s;
+    }
+    .search-wrap input:focus{border-color:var(--accent);width:300px;}
+    .search-wrap input::placeholder{color:var(--text-muted);}
 
-        .left-section {
-            display: flex;
-            align-items: center;
-            gap: clamp(0.5rem, 2vw, 1rem);
-        }
+    .nav-right{display:flex;align-items:center;gap:8px;}
+    .nav-icon{
+      width:38px;height:38px;border-radius:8px;
+      background:var(--surface-2);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--text-muted);text-decoration:none;cursor:pointer;
+      transition:background 0.2s,border-color 0.2s,color 0.2s;
+    }
+    .nav-icon:hover{background:var(--surface-3);border-color:var(--border-hover);color:var(--text);}
 
-        .back-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: clamp(36px, 6vw, 44px);
-            height: clamp(36px, 6vw, 44px);
-            border-radius: 50%;
-            background-color: var(--neutral);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            transition: all 0.3s ease;
-        }
+    /* ── SIDEBAR ── */
+    .sidebar{
+      position:fixed;top:var(--nav-h);left:0;
+      width:var(--sidebar-w);height:calc(100vh - var(--nav-h));
+      background:var(--surface);border-right:1px solid var(--border);
+      overflow-y:auto;padding:24px 0;z-index:50;
+    }
+    .sidebar-section{margin-bottom:28px;}
+    .sidebar-label{
+      font-size:10px;letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--text-dim);padding:0 20px;margin-bottom:8px;font-weight:600;
+    }
+    .sidebar-link{
+      display:flex;align-items:center;gap:12px;
+      padding:10px 20px;color:var(--text-muted);text-decoration:none;
+      font-size:13px;font-weight:500;transition:color 0.15s,background 0.15s;
+      border-left:2px solid transparent;
+    }
+    .sidebar-link:hover{color:var(--text);background:var(--surface-2);}
+    .sidebar-link.active{color:var(--accent);border-left-color:var(--accent);background:var(--accent-dim);}
+    .sidebar-link svg{flex-shrink:0;width:16px;height:16px;}
 
-        .back-btn:hover {
-            background-color: var(--hover);
-            transform: translateX(-2px);
-        }
+    /* Background lines */
+    body::before{
+      content:'';position:fixed;inset:0;
+      background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+      background-size:60px 60px;pointer-events:none;
+    }
+    body::after{
+      content:'';position:fixed;
+      width:500px;height:500px;
+      background:radial-gradient(circle,rgba(232,201,122,0.07) 0%,transparent 70%);
+      top:50%;left:50%;transform:translate(-50%,-50%);
+      pointer-events:none;
+    }
 
-        header img {
-            height: clamp(40px, 8vw, 50px);
-            width: auto;
-            max-width: 120px;
-            border-radius: 12px;
-        }
+    .card{
+      position:relative;z-index:1;
+      width:100%;max-width:400px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:clamp(32px,5vw,48px);
+      animation:rise 0.7s ease forwards;opacity:0;
+    }
+    @keyframes rise{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
-        .page-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            font-weight: 700;
-            color: var(--text-primary);
-        }
+    .wordmark{
+      font-family:var(--font-display);
+      font-size:60px;color:var(--text);
+      margin-bottom:8px;
+      text-align: center;
+      position: relative;
+    }
+    .wordmark span{color:var(--accent);}
+    .subtitle{font-size:60px;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:36px;text-align: center;}
 
-        /* Main Content */
-        main {
-            padding: clamp(2rem, 5vw, 4rem);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .divider{width:24px;height:1px;background:var(--accent);margin-bottom:32px;opacity:0.5;align-items: center;text-align: center;}
 
-        .category-header {
-            text-align: center;
-            margin-bottom: clamp(2rem, 5vw, 3rem);
-        }
+    .field{margin-bottom:20px;}
+    label{
+      display:block;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+      color:var(--text-muted);margin-bottom:8px;font-weight:500;
+    }
+    input{
+      width:100%;background:var(--surface-2);
+      border:1px solid var(--border);border-radius:8px;
+      padding:14px 16px;font-size:15px;color:var(--text);
+      font-family:var(--font-body);outline:none;
+      transition:border-color 0.2s,box-shadow 0.2s;
+    }
+    input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim);}
+    input::placeholder{color:var(--text-muted);}
+    input.err{border-color:var(--error);}
 
-        .category-icon {
-            font-size: clamp(3rem, 8vw, 4rem);
-            margin-bottom: 1rem;
-        }
+    .error-msg{
+      font-size:12px;color:var(--error);margin-top:16px;
+      display:none;padding:12px;background:rgba(232,75,75,0.08);
+      border-radius:6px;border-left:2px solid var(--error);
+    }
+    .error-msg.show{display:block;}
 
-        .category-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 6vw, 2.5rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
+    .btn{
+      width:100%;margin-top:28px;
+      padding:15px;border:none;border-radius:8px;
+      background:var(--accent);color:#000;
+      font-family:var(--font-display);font-size:18px;letter-spacing:0.08em;
+      cursor:pointer;transition:opacity 0.2s,transform 0.2s;
+    }
+    .btn:hover{opacity:0.9;transform:translateY(-1px);}
+    .btn:active{transform:translateY(0);}
 
-        .category-desc {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
+    .button1{
+      width:100%;margin-top:28px;
+      padding:15px;border:none;border-radius:8px;
+      background:var(--accent);color:#000;
+      font-family:var(--font-display);font-size:18px;letter-spacing:0.08em;
+      cursor:pointer;transition:opacity 0.2s,transform 0.2s;
+    }
+    .button1:hover{opacity:0.9;transform:translateY(-1px);}
+    .button1.active,
+.button2.active {
+  transform: scale(0.96);
+  opacity: 0.8;
+}
+    .button2{
+      width:100%;margin-top:28px;
+      padding:15px;border:none;border-radius:8px;
+      background:var(--accent);color:#000;
+      font-family:var(--font-display);font-size:18px;letter-spacing:0.08em;
+      cursor:pointer;transition:opacity 0.2s,transform 0.2s;
+    }
+    .button2:hover{opacity:0.9;transform:translateY(-1px);}
+    
+    .close-btn{
+      position:absolute;top:16px;right:16px;
+      width:32px;height:32px;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--text-muted);cursor:pointer;
+      transition:color 0.2s;
+    }
+    .close-btn:hover{color:var(--accent);}
+    .content {
+  margin-left: 240px; /* sidebar space */
+  margin-top: 70px;   /* navbar space */
+  padding: 20px;
+}
 
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: clamp(3rem, 8vw, 5rem);
-            background: var(--bg-secondary);
-            border-radius: 16px;
-            box-shadow: 0 4px 20px oklch(0% 0 0 / 0.1);
-            margin: 2rem auto;
-            max-width: 600px;
-        }
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
 
-        .empty-icon {
-            font-size: clamp(4rem, 12vw, 6rem);
-            margin-bottom: 1.5rem;
-            opacity: 0.6;
-        }
+.video-card {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
 
-        .empty-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 1rem;
-        }
+.video-card img {
+  width: 100%;
+  border-radius: 10px;
+}
 
-        .empty-desc {
-            font-size: clamp(1rem, 2.5vw, 1.1rem);
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
+.video-card:hover {
+  transform: scale(1.03);
+}
 
-        .empty-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+.video-info {
+  margin-top: 10px;
+}
 
-        .btn-primary, .btn-secondary {
-            padding: 0.875rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+.video-info h4 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
 
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
+.video-info p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
 
-        .btn-primary:hover {
-            background: var(--hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px oklch(60% 0.2 240 / 0.3);
-        }
-
-        .btn-secondary {
-            background: var(--neutral);
-            color: var(--text-secondary);
-        }
-
-        .btn-secondary:hover {
-            background: oklch(70% 0.05 0);
-            transform: translateY(-2px);
-        }
-
-        /* Suggestions */
-        .suggestions {
-            margin-top: 3rem;
-        }
-
-        .suggestions-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 4vw, 1.8rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .suggestions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .suggestion-card {
-            background: var(--bg-secondary);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 8px oklch(0% 0 0 / 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid var(--neutral);
-        }
-
-        .suggestion-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px oklch(0% 0 0 / 0.15);
-        }
-
-        .suggestion-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .suggestion-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .suggestion-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .suggestion-action {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .suggestion-action:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .empty-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .suggestions-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-primary: oklch(10% 0 0);
-                --bg-secondary: oklch(20% 0 0);
-                --text-primary: oklch(90% 0 0);
-                --text-secondary: oklch(95% 0 0);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .back-btn:hover, .btn-primary:hover, .btn-secondary:hover, .suggestion-card:hover {
-                transform: none;
-            }
-        }
-    </style>
+  </style>
 </head>
-
 <body>
-    <header>
-        <div class="left-section">
-            <a href="main.html" class="back-btn" aria-label="Back to main">←</a>
-            <img src="nowbg.png" alt="Reni NOW logo">
-            <h1 class="page-title">Long Videos</h1>
-        </div>
-    </header>
+  
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">Browse</div>
+    <a href="#" class="sidebar-link active">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      HOME
+    </a>
+    <a href="#" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      VIDEOS
+    </a>
+    <a href="#" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      FAVIOUTES
+    </a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Categories</div>
+    <a href="actorspage1.html" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      ACTORS
+    </a>
+    <a href="#" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      MOVIES
+    </a>
+    <a href="#" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+      TEASERS
+    </a>
+    <a href="#" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      TRILERS
+    </a>
+    <a href="#" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      GLIMPSES
+    </a>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Account</div>
+    <a href="account.html" onclick="navigateTo('account.html')" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </a>
+    <a href="contact.html" onclick="navigateTo('contact.html')" class="sidebar-link">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+      Help & Contact
+    </a>
+  </div>
+</aside>
+  <div class="video-grid">
 
-    <main>
-        <div class="category-header">
-            <div class="category-icon">🎭</div>
-            <h2 class="category-title">Actor Performances</h2>
-            <p class="category-desc">Discover captivating long-form videos featuring talented actors in movies, interviews, and behind-the-scenes content.</p>
-        </div>
+  <div class="video-card">
+    <img src="https://i.ytimg.com/vi/ysz5S6PUM-U/hqdefault.jpg">
+    <div class="video-info">
+      <h4>Sample Video Title</h4>
+      <p>Channel Name • 1M views • 1 day ago</p>
+    </div>
+  </div>
 
-        <div class="empty-state">
-            <div class="empty-icon">🎬</div>
-            <h3 class="empty-title">Coming Soon: Actor Long Videos</h3>
-            <p class="empty-desc">
-                We're curating an amazing collection of in-depth actor interviews, full movie showcases, and exclusive behind-the-scenes content.
-                These longer videos will give you deeper insights into the world of acting and entertainment.
-            </p>
-            <div class="empty-actions">
-                <a href="actorspage1.html" class="btn-primary">
-                    🎭 View Short Actor Videos
-                </a>
-                <button class="btn-secondary" onclick="notifyWhenAvailable()">
-                    🔔 Notify Me When Available
-                </button>
-            </div>
-        </div>
+  <div class="video-card">
+    <img src="https://i.ytimg.com/vi/tgbNymZ7vqY/hqdefault.jpg">
+    <div class="video-info">
+      <h4>Another Video</h4>
+      <p>Channel Name • 500K views • 2 days ago</p>
+    </div>
+  </div>
 
-        <div class="suggestions">
-            <h3 class="suggestions-title">While You Wait, Explore These Categories</h3>
+  <div class="video-card">
+    <img src="https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg">
+    <div class="video-info">
+      <h4>Trailer Clip</h4>
+      <p>Studio • 2M views • 1 week ago</p>
+    </div>
+  </div>
+  <div class="video-card">
+    <img src="https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg">
+    <div class="video-info">
+      <h4>Trailer Clip</h4>
+      <p>Studio • 2M views • 1 week ago</p>
+    </div>
+  </div>
+    <div class="video-card">
+    <img src="https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg">
+    <div class="video-info">
+      <h4>Trailer Clip</h4>
+      <p>Studio • 2M views • 2 weeksago</p>
 
-            <div class="suggestions-grid">
-                <div class="suggestion-card">
-                    <div class="suggestion-icon">🍳</div>
-                    <div class="suggestion-title">Food Videos</div>
-                    <div class="suggestion-desc">Watch cooking tutorials, food reviews, and culinary adventures</div>
-                    <a href="#" class="suggestion-action">Browse Food Content →</a>
-                </div>
+    </div>
 
-                <div class="suggestion-card">
-                    <div class="suggestion-icon">🎓</div>
-                    <div class="suggestion-title">Educational Content</div>
-                    <div class="suggestion-desc">Learn new skills with in-depth tutorials and courses</div>
-                    <a href="#" class="suggestion-action">Explore Education →</a>
-                </div>
+</div>
+ 
+<script>
+  function goToLong(btn) {
+  btn.classList.add('active');
+  setTimeout(() => {
+    window.location.href = 'actorslong.html';
+  }, 300);
+}
 
-                <div class="suggestion-card">
-                    <div class="suggestion-icon">⚽</div>
-                    <div class="suggestion-title">Sports Highlights</div>
-                    <div class="suggestion-desc">Catch up on the latest sports action and analysis</div>
-                    <a href="#" class="suggestion-action">Watch Sports →</a>
-                </div>
+function goToShort(btn) {
+  btn.classList.add('active');
+  setTimeout(() => {
+    window.location.href = 'actorsshort.html';
+  }, 300);
+}
 
-                <div class="suggestion-card">
-                    <div class="suggestion-icon">🎮</div>
-                    <div class="suggestion-title">Gaming Content</div>
-                    <div class="suggestion-desc">Game reviews, walkthroughs, and gaming culture</div>
-                    <a href="#" class="suggestion-action">Play Gaming Videos →</a>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        // Check authentication
-        if (!localStorage.getItem("username")) {
-            window.location.href = "login.html";
-        }
-
-        function notifyWhenAvailable() {
-            // Store notification preference
-            localStorage.setItem('notify-actor-long-videos', 'true');
-
-            // Show success message
-            showToast('🔔 You\'ll be notified when long actor videos are available!', 'success');
-        }
-
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            toast.textContent = message;
-            toast.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${type === 'success' ? 'oklch(60% 0.2 120)' : 'oklch(60% 0.2 240)'};
-                color: white;
-                padding: 1rem 1.5rem;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px oklch(0% 0 0 / 0.2);
-                z-index: 1001;
-                animation: slideInRight 0.3s ease-out;
-                max-width: 300px;
-                font-size: 0.9rem;
-            `;
-
-            document.body.appendChild(toast);
-
-            setTimeout(() => {
-                toast.style.animation = 'slideOutRight 0.3s ease-in';
-                setTimeout(() => toast.remove(), 300);
-            }, 4000);
-        }
-
-        // Add toast animations
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOutRight {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // 🚫 Disable Right Click
-        document.addEventListener("contextmenu", function(e) {
-            e.preventDefault();
-        });
-
-        // 🚫 Disable F12, Ctrl+Shift+I, Ctrl+U
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "F12") {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.shiftKey && e.key === "I") {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.shiftKey && e.key === "J") {
-                e.preventDefault();
-            }
-            if (e.ctrlKey && e.key === "u") {
-                e.preventDefault();
-            }
-        });
-    </script>
+   
+  </script>
+ 
 </body>
-
 </html>
-}
-
-.search-form input {
-    padding: 8px 12px;
-    border-radius: 20px 0 0 20px;
-    border: 1px solid #ccc;
-    outline: none;
-}
-
-.search-form button {
-    padding: 8px 12px;
-    border-radius: 0 20px 20px 0;
-    border: 1px solid #ccc;
-    border-left: none;
-    cursor: pointer;
-    background: white;
-}
-
-.search-form button:hover {
-    background: var(--hover);
-}
-
-/* Right icons */
-.right-section {
-    display: flex;
-    gap: 10px;
-}
-
-.icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #eee;
-    text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s;
-}
-
-.icon:hover {
-    background: var(--hover);
-}
-
-/* Main */
-main {
-    padding: 20px;
-}
-
-/* Boxes */
-.box-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.box {
-    background: white;
-    padding: 30px;
-    text-align: center;
-    border-radius: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.box:hover {
-    transform: translateY(-5px);
-    background: var(--hover);
-}s
-    </style>
-     <script>
-        if (!localStorage.getItem("username")) {
-            window.location.href = "login.html";
-        }
-    </script>
-</head>
-
-<body>
-    <header>
-        <div class="left-section">
-            <img src="renibg_img.png" alt="Reni Studio's logo">
-
-            <form class="search-form" role="search">
-                <label for="search-input" class="sr-only"></label>
-                <input type="text" id="search-input" name="q" placeholder="Search" maxlength="300">
-                <button type="submit" aria-label="Search">🔍</button>
-            </form>
-        </div>
-
-        <div class="right-section">
-            
-              <a href="loading2.html" class="message-link" aria-label="Messages">💬</a>
-                 <a href="loading2.html" class="account-link" aria-label="Account settings">👤</a>
-                  <a href="loading3.html" class="support-link" aria-label="Support">❓</a>
-        </div>
-      
-    </header>

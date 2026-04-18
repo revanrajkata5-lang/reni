@@ -112,5 +112,36 @@
       setTimeout(()=>{ window.location.href='loading.html'; },700);
     },1800);
   </script>
+  <script>
+//  Disable Right Click
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+});
+
+//  Disable F12, Ctrl+Shift+I, Ctrl+U
+document.addEventListener("keydown", function(e) {
+
+    // F12
+    if (e.key === "F12") {
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+I (Inspect)
+    if (e.ctrlKey && e.shiftKey && e.key === "I") {
+        e.preventDefault();
+    }
+
+    // Ctrl+Shift+J (Console)
+    if (e.ctrlKey && e.shiftKey && e.key === "J") {
+        e.preventDefault();
+    }
+
+    // Ctrl+U (View Source)
+    if (e.ctrlKey && e.key === "u") {
+        e.preventDefault();
+    }
+});
+</script>
+
 </body>
 </html>

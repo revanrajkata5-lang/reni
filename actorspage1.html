@@ -1,261 +1,163 @@
 <!DOCTYPE html>
-<html lang="en">    
+<html lang="en">
 <head>
-    <title>Actors - RENI NOW</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — RENI NOW</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --black:#060608;--surface:#0f0f12;--surface-2:#17171c;
+      --border:rgba(255,255,255,0.07);--border-hover:rgba(255,255,255,0.15);
+      --text:#f0f0f2;--text-muted:#7a7a8c;
+      --accent:#e8c97a;--accent-dim:rgba(232,201,122,0.12);
+      --error:#e84b4b;
+      --font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html,body{width:100%;min-height:100%;}
+    body{
+      font-family:var(--font-body);background:var(--black);color:var(--text);
+      display:flex;align-items:center;justify-content:center;
+      min-height:100vh;padding:24px;-webkit-font-smoothing:antialiased;
+    }
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    /* Background lines */
+    body::before{
+      content:'';position:fixed;inset:0;
+      background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+      background-size:60px 60px;pointer-events:none;
+    }
+    body::after{
+      content:'';position:fixed;
+      width:500px;height:500px;
+      background:radial-gradient(circle,rgba(232,201,122,0.07) 0%,transparent 70%);
+      top:50%;left:50%;transform:translate(-50%,-50%);
+      pointer-events:none;
+    }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    .card{
+      position:relative;z-index:1;
+      width:100%;max-width:400px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:clamp(32px,5vw,48px);
+      animation:rise 0.7s ease forwards;opacity:0;
+    }
+    @keyframes rise{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
+    .wordmark{
+      font-family:var(--font-display);
+      font-size:60px;color:var(--text);
+      margin-bottom:8px;
+      text-align: center;
+      position: relative;
+    }
+    .wordmark span{color:var(--accent);}
+    .subtitle{font-size:60px;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:36px;text-align: center;}
 
-            /* 🎬 Cinematic background */
-            background: radial-gradient(circle at top, #141414, #0b0b0f, #000);
-            color: whitesmoke;
+    .divider{width:24px;height:1px;background:var(--accent);margin-bottom:32px;opacity:0.5;align-items: center;text-align: center;}
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            overflow: hidden;
-        }
+    .field{margin-bottom:20px;}
+    label{
+      display:block;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+      color:var(--text-muted);margin-bottom:8px;font-weight:500;
+    }
+    input{
+      width:100%;background:var(--surface-2);
+      border:1px solid var(--border);border-radius:8px;
+      padding:14px 16px;font-size:15px;color:var(--text);
+      font-family:var(--font-body);outline:none;
+      transition:border-color 0.2s,box-shadow 0.2s;
+    }
+    input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim);}
+    input::placeholder{color:var(--text-muted);}
+    input.err{border-color:var(--error);}
 
-        /* ✨ Moving glow */
-        .bg-glow {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0,198,255,0.25), transparent);
-            top: -100px;
-            left: -100px;
-            filter: blur(120px);
-            animation: moveGlow 12s infinite alternate;
-        }
+    .error-msg{
+      font-size:12px;color:var(--error);margin-top:16px;
+      display:none;padding:12px;background:rgba(232,75,75,0.08);
+      border-radius:6px;border-left:2px solid var(--error);
+    }
+    .error-msg.show{display:block;}
 
-        @keyframes moveGlow {
-            0% { top: -100px; left: -100px; }
-            100% { top: 150px; left: 250px; }
-        }
+    .btn{
+      width:100%;margin-top:28px;
+      padding:15px;border:none;border-radius:8px;
+      background:var(--accent);color:#000;
+      font-family:var(--font-display);font-size:18px;letter-spacing:0.08em;
+      cursor:pointer;transition:opacity 0.2s,transform 0.2s;
+    }
+    .btn:hover{opacity:0.9;transform:translateY(-1px);}
+    .btn:active{transform:translateY(0);}
 
-        main {
-            width: 100%;
-            max-width: 500px;
-            position: relative;
-            z-index: 2;
-        }
-
-        header img {
-            display: block;
-            margin: 0 auto 20px;
-            width: 420px;
-            height: 170px;
-
-            /* subtle hover zoom */
-            transition: 0.4s;
-        }
-
-        header img:hover {
-            transform: scale(1.05);
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 50px;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-
-            /* gradient text */
-            background: linear-gradient(90deg, #00c6ff, #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Button Container */
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* Buttons */
-        .option-btn {
-            padding: 20px;
-            font-size: 18px;
-            border-radius: 15px;
-            border: none;
-            cursor: pointer;
-
-            backdrop-filter: blur(10px);
-            background: rgba(255,255,255,0.05);
-            color: white;
-            border: 1px solid rgba(255,255,255,0.1);
-
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* 🔥 Hover Glow Effect */
-        .option-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(0,198,255,0.5);
-        }
-
-        /* ✨ Shine animation */
-        .option-btn::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: linear-gradient(
-                120deg,
-                transparent,
-                rgba(255,255,255,0.2),
-                transparent
-            );
-            transform: rotate(25deg);
-            opacity: 0;
-        }
-
-        .option-btn:hover::before {
-            opacity: 1;
-            animation: shine 0.6s forwards;
-        }
-
-        @keyframes shine {
-            from { transform: translateX(-100%) rotate(25deg); }
-            to { transform: translateX(100%) rotate(25deg); }
-        }
-
-        /* Active / Selected */
-        .option-btn.active {
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
-            color: black;
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(0,198,255,0.8);
-        }
-
-        .left-section {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            margin-bottom: 22px;
-            gap: clamp(0.5rem, 2vw, 1rem);
-        }
-
-        .back-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.2);
-
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-
-            transition: 0.3s;
-        }
-
-        .back-btn:hover {
-            background: #00c6ff;
-            color: black;
-            transform: translateX(-3px) scale(1.1);
-            box-shadow: 0 0 20px #00c6ff;
-        }
-
-        /* smooth transitions globally */
-        * {
-            transition: all 0.25s ease;
-        }
-        h1 svg {
-    margin-left: 8px;
+    .button1{
+      width:100%;margin-top:28px;
+      padding:15px;border:none;border-radius:8px;
+      background:var(--accent);color:#000;
+      font-family:var(--font-display);font-size:18px;letter-spacing:0.08em;
+      cursor:pointer;transition:opacity 0.2s,transform 0.2s;
+    }
+    .button1:hover{opacity:0.9;transform:translateY(-1px);}
+    .button1.active,
+.button2.active {
+  transform: scale(0.96);
+  opacity: 0.8;
 }
-
-.back-btn svg {
-    pointer-events: none;
-}
-.option-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.option-btn svg {
-    flex-shrink: 0;
-}
-    </style>
-</head>
-
-<body>
-
-<div class="bg-glow"></div>
-
-<main>
-    <header>
-        <img src="nowbg.png" alt="logo" width="220">
-       <h1>
-ACTORS 
-<svg width="28" height="28" viewBox="0 0 24 24" 
-     fill="none" stroke="currentColor" stroke-width="2" 
-     stroke-linecap="round" stroke-linejoin="round"
-     style="vertical-align: middle;">
+    .button2{
+      width:100%;margin-top:28px;
+      padding:15px;border:none;border-radius:8px;
+      background:var(--accent);color:#000;
+      font-family:var(--font-display);font-size:18px;letter-spacing:0.08em;
+      cursor:pointer;transition:opacity 0.2s,transform 0.2s;
+    }
+    .button2:hover{opacity:0.9;transform:translateY(-1px);}
     
-    <!-- Film / video icon -->
-    <rect x="3" y="3" width="18" height="18" rx="2"/>
-    <polygon points="10,8 16,12 10,16" fill="currentColor"/>
-</svg>
-</h1>
-        <div class="left-section">
-           <a href="main.html" class="back-btn" aria-label="Back to main">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M15 18l-6-6 6-6"/>
-</svg>
-</a>
-        </div>
-    </header>
+    .close-btn{
+      position:absolute;top:16px;right:16px;
+      width:32px;height:32px;
+      display:flex;align-items:center;justify-content:center;
+      color:var(--text-muted);cursor:pointer;
+      transition:color 0.2s;
+    }
+    .close-btn:hover{color:var(--accent);}
 
-   <div class="options">
-    <button class="option-btn" onclick="goToPage('actorslong.html', this)">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="3" y="5" width="18" height="14" rx="2"/>
-            <path d="M7 3v4M17 3v4M7 17v4M17 17v4" stroke="currentColor" stroke-width="2"/>
-        </svg>
-        LONG VIDEOS
-    </button>
-
-    <button class="option-btn" onclick="goToPage('actorsshort.html', this)">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <polygon points="5,3 19,12 5,21"/>
-        </svg>
-        SHORT VIDEOS
-    </button>
-</div>
-</main>
-
+  </style>
+</head>
+<body>
+ <div class="card">
+    <div class="close-btn" onclick="window.location.href='main.html'">
+    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" width="20" height="20">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+    </div>
+    <img src="reninowbg.png" alt="logo" style="width:80px;margin:0 auto 24px auto;display:block;position: relative;">
+    <div class="wordmark">RENI<span>NOW</span></div>
+    <div class="divider"></div>
+    <div class="subtitle">ACTORS</div>
+    <button class="button1" onclick="goToLong(this)">LONG VIDEOS</button>
+    <button class="button2" onclick="goToShort(this)">SHORT VIDEOS</button>
+    </div>
 <script>
-function goToPage(page, btn) {
-    document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    setTimeout(() => {
-        window.location.href = page;
-    }, 300);
+  function goToLong(btn) {
+  btn.classList.add('active');
+  setTimeout(() => {
+    window.location.href = 'actorslong.html';
+  }, 300);
 }
-</script>
 
+function goToShort(btn) {
+  btn.classList.add('active');
+  setTimeout(() => {
+    window.location.href = 'actorsshort.html';
+  }, 300);
+}
+
+   
+  </script>
+ 
 </body>
 </html>
