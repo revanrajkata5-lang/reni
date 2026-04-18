@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — RENI NOW</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --black:#060608;--surface:#0f0f12;--surface-2:#17171c;
+      --border:rgba(255,255,255,0.07);--border-hover:rgba(255,255,255,0.15);
+      --text:#f0f0f2;--text-muted:#7a7a8c;
+      --accent:#e8c97a;--accent-dim:rgba(232,201,122,0.12);
+      --error:#e84b4b;
+      --font-display:'Bebas Neue',sans-serif;--font-body:'DM Sans',sans-serif;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html,body{width:100%;min-height:100%;}
+    body{
+      font-family:var(--font-body);background:var(--black);color:var(--text);
+      display:flex;align-items:center;justify-content:center;
+      min-height:100vh;padding:24px;-webkit-font-smoothing:antialiased;
+    }
+
+    /* Background lines */
+    body::before{
+      content:'';position:fixed;inset:0;
+      background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+                       linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+      background-size:60px 60px;pointer-events:none;
+    }
+    body::after{
+      content:'';position:fixed;
+      width:500px;height:500px;
+      background:radial-gradient(circle,rgba(232,201,122,0.07) 0%,transparent 70%);
+      top:50%;left:50%;transform:translate(-50%,-50%);
+      pointer-events:none;
+    }
+
+    .card{
+      position:relative;z-index:1;
+      width:100%;max-width:400px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:clamp(32px,5vw,48px);
+      animation:rise 0.7s ease forwards;opacity:0;
+    }
+    @keyframes rise{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+    .wordmark{
+      font-family:var(--font-display);
+      font-size:36px;letter-spacing:0.08em;color:var(--text);
+      margin-bottom:8px;
+      text-align: center;
+      position: relative;
+    }
+    .wordmark span{color:var(--accent);}
+    .subtitle{font-size:13px;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:36px;}
+
+    .divider{width:24px;height:1px;background:var(--accent);margin-bottom:32px;opacity:0.5;align-items: center;text-align: center;}
+
+    .field{margin-bottom:20px;}
+    label{
+      display:block;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+      color:var(--text-muted);margin-bottom:8px;font-weight:500;
+    }
+    input{
+      width:100%;background:var(--surface-2);
+      border:1px solid var(--border);border-radius:8px;
+      padding:14px 16px;font-size:15px;color:var(--text);
+      font-family:var(--font-body);outline:none;
+      transition:border-color 0.2s,box-shadow 0.2s;
+    }
+    input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim);}
+    input::placeholder{color:var(--text-muted);}
+    input.err{border-color:var(--error);}
+
+    .error-msg{
+      font-size:12px;color:var(--error);margin-top:16px;
+      display:none;padding:12px;background:rgba(232,75,75,0.08);
+      border-radius:6px;border-left:2px solid var(--error);
+    }
+    .error-msg.show{display:block;}
+
+    .btn{
+      width:100%;margin-top:28px;
+      padding:15px;border:none;border-radius:8px;
+      background:var(--accent);color:#000;
+      font-family:var(--font-display);font-size:18px;letter-spacing:0.08em;
+      cursor:pointer;transition:opacity 0.2s,transform 0.2s;
+    }
+    .btn:hover{opacity:0.9;transform:translateY(-1px);}
+    .btn:active{transform:translateY(0);}
+
+    
+  </style>
+</head>
+<body>
+
+
+
+  <div class="card">
+    <img src="reninowbg.png" alt="logo" style="width:80px;margin:0 auto 24px auto;display:block;position: relative;">
+    <div class="wordmark">RENI<span>NOW</span></div>
+    <div class="divider"></div>
+    <div class="subtitle">Sign in to continue</div>
+
+    <form onsubmit="login(event)">
+      <div class="field">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username" required autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required autocomplete="current-password">
+      </div>
+      <div class="error-msg" id="errMsg">Incorrect username or password. Please try again.</div>
+      
+      <button type="submit" class="btn">Sign In</button>
+        
+    </form>
+  </div>
+
+  <script>
+   
+    function login(e){
+      e.preventDefault();
+      const u=document.getElementById('username').value;
+      const p=document.getElementById('password').value;
+      const users={
+        "revanraj":{password:"123456789",email:"revanrajkata5@gmail.com",phone:"9849875648"},
+        "sandeep":{password:"8008779906",email:"katasandeepraj@gmail.com",phone:"8008779906"},
+        "ragini":{password:"ragini2628",email:"vaddhiragini@gmail.com",phone:"9014199343"},
+        "narayana":{password:"narayana1234",email:"nvreddy@gmail.com",phone:"#"}
+      };
+      if(users[u] && users[u].password === p){
+  localStorage.setItem('username', u);
+  localStorage.setItem('email', users[u].email);
+  localStorage.setItem('phone', users[u].phone);
+
+  window.location.href = 'loading1.html'; // ✅ redirect works
+}
+       else {
+        const err=document.getElementById('errMsg');
+        err.classList.add('show');
+        document.getElementById('username').classList.add('err');
+        document.getElementById('password').classList.add('err');
+      }
+    }
+  </script>
+</body>
+</html>

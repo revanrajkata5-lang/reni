@@ -1,227 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>RENI NOW</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body>
-    <div class="cinematic-overlay"></div>
-    <main>
-        <header>
-            <h1>WELCOME TO</h1>
-        </header>
-
-        <figure>
-            <img src="nowbg.png"
-                 alt="Reni Studio's logo featuring a stylized main image" 
-                 style="width: clamp(200px, 50vw, 400px); height: auto; max-width: 100%;">
-        </figure>
-        
-          
-        
-    </main>
-  <script>
-// Start cinematic transition after 0.9s
-setTimeout(function () {
-    document.body.classList.add("transitioning");
-
-    // Wait for animation to complete, then redirect
-    setTimeout(function () {
-        window.location.href = "loading.html";
-    }, 900);
-
-}, 900);
-// Disable F12, Ctrl+Shift+I, Ctrl+U
-document.addEventListener("keydown", function(e) {
-
-    if (e.key === "F12") e.preventDefault();
-
-    if (e.ctrlKey && e.shiftKey && e.key === "I") e.preventDefault();
-
-    if (e.ctrlKey && e.shiftKey && e.key === "J") e.preventDefault();
-
-    if (e.ctrlKey && e.key === "u") e.preventDefault();
-});
-</script>
-</body>
-
-<style>
-    /* Cinematic overlay */
-.cinematic-overlay {
-    position: fixed;
-    inset: 0;
-    background: black;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 999;
-}
-
-/* Trigger animation */
-body.transitioning .cinematic-overlay {
-    animation: cinematicFade 0.8s forwards;
-}
-
-@keyframes cinematicFade {
-    0% {
-        opacity: 0;
-    }
-    40% {
-        opacity: 0.6;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-/* Logo cinematic zoom */
-body.transitioning img {
-    animation: logoZoom 0.8s forwards;
-}
-
-@keyframes logoZoom {
-    0% {
-        transform: scale(1);
-        filter: blur(0px);
-    }
-    100% {
-        transform: scale(1.2);
-        filter: blur(6px);
-        opacity: 0;
-    }
-}
-
-/* Text fade */
-body.transitioning h1 {
-    animation: textFade 0.6s forwards;
-}
-
-@keyframes textFade {
-    to {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RENI NOW</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
     :root {
-        --bg-primary: oklch(61.065% 0.24313 28.567);
-        --text-primary: oklch(95% 0 0);
-        --accent: oklch(60% 0.2 240);
-        --neutral: oklch(20% 0 0);
+      --black:#060608; --accent:#e8c97a; --text:#f0f0f2;
+      --font-display:'Bebas Neue',sans-serif; --font-body:'DM Sans',sans-serif;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html,body{width:100%;height:100%;overflow:hidden;}
+    body{
+      font-family:var(--font-body);
+      background:var(--black);
+      color:var(--text);
+      display:flex;align-items:center;justify-content:center;
+      -webkit-font-smoothing:antialiased;
     }
 
- body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    color: var(--text-primary);
-    min-height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    background: radial-gradient(circle at 20% 20%, oklch(30% 0.2 240 / 0.2), transparent 40%),
-                radial-gradient(circle at 80% 80%, oklch(50% 0.2 120 / 0.2), transparent 40%),
-                #020b12;
-
-    animation: bgMove 10s infinite alternate ease-in-out;
-}
-.enter-btn {
-    display: inline-block;
-    margin-top: 20px;
-
-    padding: clamp(0.75rem, 3vw, 1.5rem) clamp(1.5rem, 6vw, 3rem);
-    font-size: clamp(1rem, 4vw, 1.25rem);
-    font-weight: 600;
-
-    color: black;
-    background: var(--accent);
-    border-radius: 10px;
-    text-decoration: none;
-
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 16px oklch(60% 0.2 240 / 0.3);
-
-    position: relative;
-    overflow: hidden;
-}
-
-
-@keyframes bgMove {
-    0% { background-position: 0% 0%, 100% 100%; }
-    100% { background-position: 10% 10%, 90% 90%; }
-}
-
-    main {
-    animation: fadeInUp 1s ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+    /* Noise grain overlay */
+    body::before{
+      content:'';position:fixed;inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity:0.04;pointer-events:none;z-index:0;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    /* Radial glow */
+    .glow{
+      position:fixed;
+      width:700px;height:700px;
+      background:radial-gradient(circle,rgba(232,201,122,0.08) 0%,transparent 70%);
+      top:50%;left:50%;transform:translate(-50%,-50%);
+      pointer-events:none;z-index:0;
+      animation:breathe 6s ease-in-out infinite;
     }
-}
+    @keyframes breathe{
+      0%,100%{opacity:0.6;transform:translate(-50%,-50%) scale(1);}
+      50%{opacity:1;transform:translate(-50%,-50%) scale(1.15);}
+    }
 
-  h1 {
-    letter-spacing: 2px;
-    background: linear-gradient(90deg, white, oklch(70% 0.2 240));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    .scene{
+      position:relative;z-index:1;
+      text-align:center;
+      animation:fadeUp 1s ease forwards;
+      opacity:0;
+    }
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(24px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+    .img{
+      width:clamp(200px,50vw,400px);
+      height:auto;
+      max-width:100%;
+      position: relative;
+        display: above;
+        align-items: center;
+    }
+    .scene img{
+  display:block;
+  margin: 0 auto 20px auto;
 }
+    .wordmark{
+      font-family:var(--font-display);
+      font-size:clamp(72px,15vw,140px);
+      letter-spacing:0.06em;
+      line-height:0.9;
+      color:var(--text);
+      position:relative;
+      display:inline-block;
+    }
+    .wordmark span{color:var(--accent);}
 
- figure {
-    animation: float 4s ease-in-out infinite;
-}
+    .tagline{
+      font-size:clamp(11px,1.5vw,13px);
+      letter-spacing:0.4em;
+      text-transform:uppercase;
+      color:rgba(240,240,242,0.35);
+      margin-top:16px;
+      font-weight:300;
+    }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
+    .divider{
+      width:40px;height:1px;
+      background:var(--accent);
+      margin:28px auto;
+      opacity:0.6;
+    }
 
-   img {
-    transition: all 0.4s ease;
-}
+    /* Fade out on redirect */
+    body.exit{animation:fadeOut 0.7s ease forwards;}
+    @keyframes fadeOut{to{opacity:0;}}
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="scene">
+    <img src="reninowbg.png" alt="logo">
+    <div class="wordmark">RENI<span>NOW</span></div>
+    <div class="divider"></div>
+    <div class="tagline">Your world. Your screen.</div>
+  </div>
 
-img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 40px oklch(60% 0.2 240 / 0.4);
-}
-
-   .enter-btn {
-    position: relative;
-    overflow: hidden;
-}
-
-/* Glow pulse */
-.enter-btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 8px;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-    opacity: 0;
-    transition: opacity 0.4s;
-}
-
-.enter-btn:hover::after {
-    opacity: 1;
-    animation: shine 1s;
-}
-
-@keyframes shine {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(100%); }
-}
-</style>
-
+  <script>
+    setTimeout(()=>{
+      document.body.classList.add('exit');
+      setTimeout(()=>{ window.location.href='loading.html'; },700);
+    },1800);
+  </script>
+</body>
 </html>
